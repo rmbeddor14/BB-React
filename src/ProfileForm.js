@@ -25,6 +25,7 @@ function ProfileForm({ onSubmit }) {
       preferredLifestyle: formData.get('preferredLifestyle').split(',').map(p => p.trim()),
       contactFrequency: formData.get('contactFrequency'),
       imageURL: formData.get('imageURL'),
+      status: 'pending' //set status to pending
     };
     try {
       await addDoc(collection(db, 'profiles'), profileData);
