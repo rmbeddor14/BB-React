@@ -1,0 +1,30 @@
+/* ProfileForm.css */
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}

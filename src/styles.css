@@ -1,0 +1,78 @@
+/* styles.css */
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: #698AE1;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+.button:hover {
+    background-color: #5774C7;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* For screens smaller than 768px (e.g., tablets and phones) */
+
+    .container {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+        /* Stack buttons vertically on small screens */
+        gap: 10px;
+        /* Reduce gap between buttons */
+    }
+
+    .button {
+        width: 100%;
+        /* Make buttons full-width on mobile */
+        max-width: 300px;
+        /* Optional max width to limit button size */
+        padding: 12px 20px;
+        /* Adjust padding for smaller screens */
+        font-size: 16px;
+        /* Slightly smaller font size */
+    }
+}
+
+@media (min-width: 769px) {
+    /* For screens larger than 768px (e.g., desktops and larger tablets) */
+
+    .container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    .button-container {
+        flex-direction: row;
+        /* Align buttons horizontally */
+    }
+
+    .button {
+        width: auto;
+        /* Let buttons size naturally based on their content */
+    }
+}

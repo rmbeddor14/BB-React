@@ -1,0 +1,70 @@
+/* ProfileCard.css */
+
+.profile-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    overflow: hidden;
+    background-color: #698AE1;
+    color: white;
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+/* Image Wrapper for Forced Uniformity */
+.profile-card-image-wrapper {
+    width: 100%;
+    height: 200px;
+    /* Fixed height for consistency */
+    overflow: hidden;
+    /* Crop overflow */
+}
+
+/* Image Styles */
+.profile-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fill the space while maintaining aspect ratio */
+    display: block;
+}
+
+/* Name Styles */
+.profile-card-name {
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #5774C7;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .profile-card-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .profile-card {
+        max-width: 100%;
+    }
+
+    .profile-card-image-wrapper {
+        width: 100%;
+        height: 200px;
+        /* Maintain a fixed height on mobile */
+    }
+
+    .profile-card-name {
+        font-size: 16px;
+        padding: 8px 0;
+    }
+}
