@@ -6,7 +6,7 @@ import './styles.css'; // Import the centralized styles
 function MainPage() {
   return (
     <div className="container">
-      <h1>Welcome to the Static Surrogacy App</h1>
+      <h1>Welcome to v0 Surrogacy App</h1>
       <div className="button-container">
         <Link to="/create-profile" className="button">
           Create a Profile
