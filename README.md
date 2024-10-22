@@ -1,5 +1,6 @@
 # Status
 
+
 ## 10-22-2024
 
 - Connected Firebase 
@@ -9,7 +10,10 @@
 
 https://bb-react-f3374.web.app/
 
+### login with google demo
+![gif demo](img/demo_of_login_google_10_22_24.gif)
 
+### admin screen demo
 ![gif demo](img/AdminScreen.gif)
 
 

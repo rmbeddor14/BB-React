@@ -38,6 +38,10 @@
     text-align: left;
     /* Align text to the left */
     position: relative;
+    outline: none;
+            /* Add this */
+    box-shadow: none;
+            /* Add this *
 }
 
 .login-button::before {
