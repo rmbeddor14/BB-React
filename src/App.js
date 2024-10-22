@@ -6,7 +6,7 @@ import MainPage from './MainPage';
 import ProfileForm from './ProfileForm';
 import ProfileList from './ProfileList';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import AdminViewProfiles from './AdminViewProfiles';
 
 
 function App() {
@@ -55,6 +55,9 @@ function App() {
 
         {/* Route for displaying individual profile details */}
         <Route path="/profile/:id" element={<Profile profiles={profiles} />} />
+
+        <Route path="/admin" element={<AdminViewProfiles />} />
+
       </Routes>
     </Router>
   );

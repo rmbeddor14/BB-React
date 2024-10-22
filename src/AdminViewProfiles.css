@@ -1,0 +1,37 @@
+/* src/AdminViewProfiles.css */
+.admin-view-profiles {
+  padding: 20px;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.reject-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
