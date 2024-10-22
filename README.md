@@ -4,9 +4,13 @@
 
 - Connected Firebase 
 - Correctly hosted 
+- made admin screen
+- you can see from the gif that it does need some work on reactivity
 
 https://bb-react-f3374.web.app/
 
+
+![gif demo](img/AdminScreen.gif)
 
 
 # The below statuses are actually from the react tutorial project
