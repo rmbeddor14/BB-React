@@ -28,7 +28,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
-import db from './firebase-config';
+import { db } from './firebase-config';
 import ProfileCard from './ProfileCard';
 import './styles.css'; // Import the centralized CSS file
 import './ProfileList.css'; // Import the Profile List specific styles

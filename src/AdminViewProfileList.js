@@ -1,58 +1,8 @@
-// // src/AdminViewProfileList.js
-// import React, { useEffect, useState } from 'react';
-// import { collection, getDocs, updateDoc, doc, addDoc } from 'firebase/firestore';
-// import db from './firebase-config';
-// import ProfileCardContainer from './AdminProfileCardContainer';
-// import './styles.css'; // Import the centralized CSS file
-// import './AdminViewProfileList.css'; // Import the AdminViewProfileList-specific CSS file
+//src/AdminViewProfileList.js
 
-// function AdminViewProfileList() {
-//   const [profiles, setProfiles] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProfiles = async () => {
-//       const profilesCollection = collection(db, 'profiles');
-//       const profileSnapshot = await getDocs(profilesCollection);
-//       const profileList = profileSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(profile => profile.status !== 'approved' && profile.status !== 'rejected');
-//       setProfiles(profileList);
-//     };
-
-//     fetchProfiles();
-//   }, []);
-
-//   const handleApprove = async (id) => {
-//     const profileRef = doc(db, 'profiles', id);
-//     await updateDoc(profileRef, { status: 'approved' });
-//     setProfiles(profiles.map(profile => profile.id !== id));
-//   };
-
-//   const handleReject = async (id) => {
-//     const profileRef = doc(db, 'profiles', id);
-//     await updateDoc(profileRef, { status: 'rejected' });
-//     setProfiles(profiles.filter(profile => profile.id !== id)); // Remove the rejected profile from the state
-//   };
-
-//   return (
-//     <div className="admin-view-profiles">
-//       <h1>Admin View Pending Profiles</h1>
-//       <div className="profile-list">
-//         {profiles.map(profile => (
-//           <ProfileCardContainer
-//             key={profile.id}
-//             profile={profile}
-//             onApprove={handleApprove}
-//             onReject={handleReject}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default AdminViewProfileList;
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
-import db from './firebase-config';
+import { db } from './firebase-config';
 import AdminProfileCardContainer from './AdminProfileCardContainer';
 import './styles.css'; // Import the centralized CSS file
 import './AdminViewProfileList.css'; // Import the AdminViewProfileList-specific CSS file

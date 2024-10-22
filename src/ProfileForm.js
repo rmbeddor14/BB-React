@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './styles.css'; // Import the centralized CSS file
 import './ProfileForm.css'; // Import the ProfileForm-specific CSS file
-import db from './firebase-config';
+import { db } from './firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
 
 function ProfileForm({ onSubmit }) {

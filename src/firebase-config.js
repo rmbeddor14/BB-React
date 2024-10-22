@@ -3,6 +3,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, addDoc } from "firebase/firestore"; 
+import {getAuth} from 'firebase/auth';
 //uncomment because of error message about exports 
 
 //import firebase from "firebase";
@@ -26,9 +27,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
+const auth = getAuth(app);
 
 //const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 //const database = firebaseApp.firestore();
 
-export default db;
+export {db, auth} ;

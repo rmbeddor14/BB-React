@@ -1,3 +1,32 @@
-/* MainPage.css */
+.top-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
 
-/* You can add MainPage-specific styles here */
+.logout-button {
+    background-color: rgba(128, 128, 128, 0.5);
+    /* Transparent gray */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    /* Add some space between buttons */
+}
+
+
+.admin-button {
+    background-color: rgba(128, 128, 128, 0.5);
+    /* Transparent gray */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
