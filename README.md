@@ -1,5 +1,15 @@
 # Status
 
+## 10-22-2024
+
+- Connected Firebase 
+- Correctly hosted 
+
+https://bb-react-f3374.web.app/
+
+
+
+# The below statuses are actually from the react tutorial project
 ## 10-21-2024
 - continuing to build skeleton but will start making legit with firebase shortly 
 - the create profile form is just a skeleton. it doesn't submit anything for real because we need to move that to a firestore call eventually
