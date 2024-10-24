@@ -6,6 +6,7 @@
 - this way when rotate keys you can just change `add_secrets.sh`
 - no `add_secrets.sh` in the gh repo because added to `.gitignore`
 - put the secrets into a `.env.local` so i can also still use `npm start` locally to debug before pushing to deployment 
+- fixed the back button
 
 ### React Diagram Example
 
