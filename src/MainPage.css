@@ -113,10 +113,82 @@ body {
     transform: scale(1.05);
     /* Slightly increase size on hover for a dynamic effect */
 }
+/* Footer buttons styling */
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-around;
+    /* Evenly space the buttons */
+    gap: 10px;
+    margin: 30px 0 20px;
+    /* Add some spacing from other content */
+    padding: 15px;
+    /* Light grey transparent background */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Slight shadow for a floating effect */
+}
+
+/* Style for the footer buttons */
+.footer-buttons .btn {
+    flex: 1;
+    max-width: 45%;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.3);
+    /* Semi-transparent grey */
+    color: #333;
+    border: none; 
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    /* Optional frosted glass effect */
+}
+
+
+
+
+/* Button hover effect */
+.footer-buttons .btn:hover {
+    background-color: rgba(207, 203, 211, 0.8);
+    /* Slightly darker on hover */
+    transform: scale(1.05);
+    /* Scale up slightly */
+}
 
 @media (max-width: 768px) {
+
+     /* Add this to MainPage.css for mobile styles */
+
+@media (max-width: 768px) {
+    .header-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(207, 203, 211, 0.8);
+        /* Make background slightly transparent */
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+        /* Ensure it stays on top of other content */
+    }
+
+    .header-buttons .btn {
+        flex: 1;
+        margin: 0 5px;
+        /* Adjust margins for better spacing */
+        max-width: 45%;
+        /* Limit the width for better fit */
+        padding: 10px;
+    }
+}
+
     .header {
         flex-direction: column;
+        align-items: center
     }
 
     .action-buttons .btn {
