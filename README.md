@@ -1,5 +1,10 @@
 # Status
 
+## 10-23-2024
+
+- moved the keys to `.env` file and added to `.gitignore` to hide the keys from github entirely
+- called `.env` in `firebase-config.js` instead of calling keys directly
+- this is a step in the right direction for a prod deployment , though probably could still be configured more elegantly 
 
 ## 10-22-2024
 
@@ -7,6 +12,7 @@
 - Correctly hosted 
 - made admin screen
 - you can see from the gif that it does need some work on reactivity
+- fixed the workflow (github actions) (the .github/yaml files)so that the push causes firebase deploy pipeline
 
 https://bb-react-f3374.web.app/
 
