@@ -4,17 +4,18 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f5;
+    
 }
 
 .main-page {
     text-align: center;
-    background-image: url('../public/img/family-stock-photo3.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/img/family-stock-photo3.jpg') no-repeat center center/cover;
 }
 
 .logo {

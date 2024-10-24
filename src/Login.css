@@ -1,6 +1,6 @@
 /* Login.css */
 
-body {
+.login-page {
     background-color: #f0f0f5;
     font-family: Arial, sans-serif;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../public/img/family-stock-photo3.jpg') no-repeat center center/cover;
@@ -88,7 +88,7 @@ body {
 
 /* Mobile adjustments */
 @media (max-width: 678px) {
-    body {
+    .login-page {
         display: flex;
         justify-content: center;
         align-items: center;
