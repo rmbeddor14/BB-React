@@ -5,6 +5,7 @@
 - moved the keys to `.env` file and added to `.gitignore` to hide the keys from github entirely
 - called `.env` in `firebase-config.js` instead of calling keys directly
 - this is a step in the right direction for a prod deployment , though probably could still be configured more elegantly 
+- ACTUALLY THAT WON'T WORK BECAUSE GITHUB DEPLOY METHOD, NEED TO FIGURE OUT ALT 
 
 ## 10-22-2024
 
