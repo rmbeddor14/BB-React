@@ -1,66 +1,124 @@
 /* Login.css */
 
+body {
+    background-color: #f0f0f5;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../public/img/family-stock-photo3.jpg') no-repeat center center/cover;
+    background-size: cover;
+            /* Make the background cover the entire screen */
+    margin: 0;
+    padding: 20px;
+    justify-content: center;
+        /* Center the content horizontally */
+    align-items: center;
+        /* Center the content vertically */
+    min-height: 100vh;
+        /* Ensure the body takes up the full screen height */
+}
+
 .login-container {
     max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 80px auto;
+    padding: 30px;
+
+    border-radius: 12px;
+
     text-align: center;
+    position: relative;
+    background: rgba(207, 203, 211, 0.7);
+            /*background: rgba(255, 255, 255, 0.8);*/
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login-header {
     margin-bottom: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
 }
 
-.login-header h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.app-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+}
+
+.login-content {
+    margin-bottom: 30px;
 }
 
 .login-button {
-    display: inline-block;
-    background-color: #698AE1;
-    /* BB purple color - eventually may want this to be diff based on provider */
+    background-color: #6200ea;
+    /* Consistent with BabyBumps purple color */
     color: #fff;
     border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    border-radius: 8px;
+    padding: 12px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     width: 100%;
-    /* Full-width button */
-    text-align: left;
-    /* Align text to the left */
-    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     outline: none;
-            /* Add this */
-    box-shadow: none;
-            /* Add this *
-}
-
-.login-button::before {
-    content: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg');
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
 }
 
 .login-button:hover {
-    background-color: #5774C7
-    /* Darker Google red */
+    background-color: #3700b3;
+    /* Darker shade of purple for hover effect */
 }
 
 .login-footer {
     margin-top: 20px;
     font-size: 14px;
     color: #666;
+}
+
+
+
+/* Mobile adjustments */
+@media (max-width: 678px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 10px;
+    }
+    .login-container {
+        max-width: 90%;
+        /* Make the container width flexible for smaller screens */
+        margin: 20px auto;
+        /* Reduce the top margin on mobile for better centering */
+        padding: 20px;
+        /* Reduce padding to fit smaller screens */
+    }
+
+    .login-header {
+        font-size: 1.4em;
+        /* Adjust font size for smaller screens */
+    }
+
+    .app-icon {
+        width: 24px;
+        /* Make the icon smaller on mobile */
+        height: 24px;
+    }
+
+    .login-button {
+        font-size: 14px;
+        /* Reduce font size for better fit */
+        padding: 10px 15px;
+        /* Reduce padding for smaller buttons */
+    }
 }

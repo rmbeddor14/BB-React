@@ -61,6 +61,14 @@ body {
     cursor: pointer;
 }
 
+.header-buttons .btn:hover {
+    background-color: #6d04ff;
+    /* Darken button color on hover */
+    transform: scale(1.05);
+    /* Slightly increase size on hover for a dynamic effect */
+}
+
+
 .hero-section {
     text-align: center;
     color: white;

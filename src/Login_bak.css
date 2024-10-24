@@ -1,0 +1,66 @@
+/* Login.css */
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-header {
+    margin-bottom: 20px;
+}
+
+.login-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.login-button {
+    display: inline-block;
+    background-color: #698AE1;
+    /* BB purple color - eventually may want this to be diff based on provider */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    width: 100%;
+    /* Full-width button */
+    text-align: left;
+    /* Align text to the left */
+    position: relative;
+    outline: none;
+            /* Add this */
+    box-shadow: none;
+            /* Add this *
+}
+
+.login-button::before {
+    content: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg');
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.login-button:hover {
+    background-color: #5774C7
+    /* Darker Google red */
+}
+
+.login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
