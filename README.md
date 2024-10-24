@@ -5,6 +5,12 @@
 - then call the gh secrets by persisting them to env variables as part of deployment process (change to yaml)
 - this way when rotate keys you can just change `add_secrets.sh`
 - no `add_secrets.sh` in the gh repo because added to `.gitignore`
+- put the secrets into a `.env.local` so i can also still use `npm start` locally to debug before pushing to deployment 
+
+### React Diagram Example
+
+![diagram](img/Diagram_React_10_24_24.png)
+
 ## 10-23-2024
 
 - moved the keys to `.env` file and added to `.gitignore` to hide the keys from github entirely
