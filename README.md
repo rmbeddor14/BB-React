@@ -1,11 +1,15 @@
 # Status
 
+## 10-24-2024
+- changed the way to do secrets from `.env` to a bash script to add secrets to gh using the gh cli
+- then call the gh secrets by persisting them to env variables as part of deployment process (change to yaml)
+- this way when rotate keys you can just change `add_secrets.sh`
+- no `add_secrets.sh` in the gh repo because added to `.gitignore`
 ## 10-23-2024
 
 - moved the keys to `.env` file and added to `.gitignore` to hide the keys from github entirely
 - called `.env` in `firebase-config.js` instead of calling keys directly
 - this is a step in the right direction for a prod deployment , though probably could still be configured more elegantly 
-- ACTUALLY THAT WON'T WORK BECAUSE GITHUB DEPLOY METHOD, NEED TO FIGURE OUT ALT 
 
 ## 10-22-2024
 

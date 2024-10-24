@@ -46,8 +46,10 @@ function MainPage() {
     }
   };
 
+  //the below can probably just be embedded in the jsx html as a button 
+  //it's for uniformity with the handleLogout function
   const handleAdminNavigate = () => {
-    navigate('/admin', { replace: true });
+    navigate('/admin');
   };
 
   return (
