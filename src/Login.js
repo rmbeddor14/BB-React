@@ -3,23 +3,28 @@
 import React, { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './styles.css';
 import './Login.css';
 
 function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
     const auth = getAuth();
+
+    // Determine the redirect location after login
+    const from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                navigate('/', { replace: true });
+                // navigate('/', { replace: true }); //original
+                navigate(from, { replace: true }); // Redirect to the previous location after login
             }
         });
 
         return () => unsubscribe();
-    }, [auth, navigate]);
+    }, [auth, navigate, from]);
 
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();

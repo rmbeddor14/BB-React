@@ -1,0 +1,208 @@
+/* MainPage.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    
+}
+
+.main-page {
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/img/family-stock-photo3.jpg') no-repeat center center/cover;
+}
+
+.logo {
+    display: flex;
+    /* Use flexbox to align the icon and text */
+    align-items: center;
+    /* Vertically align icon and text */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Style for the app icon */
+.app-icon {
+    width: 48px;
+    /* Set the desired width for the icon */
+    height: 48px;
+    /* Set the desired height for the icon */
+    margin-right: 16px;
+    /* Add space between the icon and the text */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    padding: 30px;
+    background: rgba(207, 203, 211, 0.8);
+    /*background: rgba(255, 255, 255, 0.8);*/
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.header-buttons .btn {
+    margin-left: 10px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.header-buttons .btn:hover {
+    background-color: #6d04ff;
+    /* Darken button color on hover */
+    transform: scale(1.05);
+    /* Slightly increase size on hover for a dynamic effect */
+}
+
+
+.hero-section {
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-section h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* This adds space between the buttons */
+}
+
+.action-buttons .btn {
+    background-color: #a6bbe9;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-buttons .btn:hover {
+    background-color: #6e94e5e6;
+    /* Darken button color on hover */
+    transform: scale(1.05);
+    /* Slightly increase size on hover for a dynamic effect */
+}
+/* Footer buttons styling */
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-around;
+    /* Evenly space the buttons */
+    gap: 10px;
+    margin: 30px 0 20px;
+    /* Add some spacing from other content */
+    padding: 15px;
+    /* Light grey transparent background */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Slight shadow for a floating effect */
+}
+
+/* Style for the footer buttons */
+.footer-buttons .btn {
+    flex: 1;
+    max-width: 45%;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.3);
+    /* Semi-transparent grey */
+    color: #333;
+    border: none; 
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    /* Optional frosted glass effect */
+}
+
+
+/* Button hover effect */
+.footer-buttons .btn:hover {
+    background-color: rgba(207, 203, 211, 0.8);
+    /* Slightly darker on hover */
+    transform: scale(1.05);
+    /* Scale up slightly */
+}
+
+
+
+@media (max-width: 768px) {
+
+
+    .header-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(207, 203, 211, 0.8);
+        /* Make background slightly transparent */
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 1000;
+        /* Ensure it stays on top of other content */
+    }
+
+    .header-buttons .btn {
+        flex: 1;
+        margin: 0 5px;
+        /* Adjust margins for better spacing */
+        max-width: 45%;
+        /* Limit the width for better fit */
+        padding: 10px;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        /* Stack the buttons vertically */
+        align-items: center;
+        /* Center the buttons */
+        gap: 10px;
+        /* Add space between the stacked buttons */
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+        /* Make the buttons full-width */
+        max-width: none;
+        /* Remove max-width to allow full width */
+        margin: 10px 0;
+        /* Add margin to separate the buttons */
+        padding: 10px;
+    }
+}
