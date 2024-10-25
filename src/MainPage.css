@@ -95,12 +95,12 @@ body {
 }
 
 .action-buttons .btn {
-    background-color: #03dac6;
+    background-color: #a6bbe9;
     color: black;
     border: none;
     border-radius: 8px;
     padding: 12px 24px;
-    font-size: 1em;
+    font-size: 1.1em;
     margin: 5px;
     cursor: pointer;
     text-decoration: none;
@@ -108,7 +108,7 @@ body {
 }
 
 .action-buttons .btn:hover {
-    background-color: #00bfa5;
+    background-color: #6e94e5e6;
     /* Darken button color on hover */
     transform: scale(1.05);
     /* Slightly increase size on hover for a dynamic effect */
