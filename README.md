@@ -1,12 +1,26 @@
 # Status
 
 ## 10-24-2024
+- made it look a lot better 
+- slowness - still trying to figure out why 
+- see how the image isn't immediate 
+![slightly too slow](img/slightly_slower.gif)
+
+- otherwise here's a tour - really happy with the style 
+
+![demo](img/demo_Oct24.gif)
+
+- here's a mobile screenshot 
+
+![mobile demo](img/mobile_demo_Oct24.png)
+
 - changed the way to do secrets from `.env` to a bash script to add secrets to gh using the gh cli
 - then call the gh secrets by persisting them to env variables as part of deployment process (change to yaml)
 - this way when rotate keys you can just change `add_secrets.sh`
 - no `add_secrets.sh` in the gh repo because added to `.gitignore`
 - put the secrets into a `.env.local` so i can also still use `npm start` locally to debug before pushing to deployment 
 - fixed the back button
+
 
 ### React Diagram Example
 
