@@ -228,17 +228,7 @@ body {
          .dropdown-menu .dropdown-btn+.dropdown-btn {
              margin-top: 5px;
          }
-    
-         /* Make the welcome section more compact on mobile */
-         .welcome-section h1 {
-             font-size: 2rem;
-         }
-    
-         .welcome-section p {
-             font-size: 1.5rem;
-         }
-         
-    
+
          /* Make the dropdown smoother and more visually appealing */
          .dropdown-menu {
              animation: slide-down 0.3s ease-out;

@@ -38,16 +38,24 @@
 .welcome-section {
     text-align: center;
     color: white;
-    padding: 10px;
+    padding: 2px;
+    position: relative;
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    /* option to add background */
 }
 
 .welcome-section h1 {
-    font-size: 3rem;
+    font-size: 5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2px;
+            /* Adding text shadow for readability */
   /*  margin-bottom: 0.5rem; */
 }
 
 .welcome-section p {
     font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0px;
 }
 
 /* Footer buttons styling */
@@ -138,11 +146,11 @@
 
 /* Make the welcome section more compact on mobile */
 .welcome-section h1 {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .welcome-section p {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 
