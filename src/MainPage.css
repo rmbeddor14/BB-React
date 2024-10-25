@@ -147,8 +147,6 @@ body {
 }
 
 
-
-
 /* Button hover effect */
 .footer-buttons .btn:hover {
     background-color: rgba(207, 203, 211, 0.8);
@@ -157,11 +155,11 @@ body {
     /* Scale up slightly */
 }
 
-@media (max-width: 768px) {
 
-     /* Add this to MainPage.css for mobile styles */
 
 @media (max-width: 768px) {
+
+
     .header-buttons {
         position: fixed;
         bottom: 0;
@@ -184,16 +182,27 @@ body {
         /* Limit the width for better fit */
         padding: 10px;
     }
-}
-
     .header {
         flex-direction: column;
-        align-items: center
+        align-items: center;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        /* Stack the buttons vertically */
+        align-items: center;
+        /* Center the buttons */
+        gap: 10px;
+        /* Add space between the stacked buttons */
     }
 
     .action-buttons .btn {
         width: 100%;
+        /* Make the buttons full-width */
+        max-width: none;
+        /* Remove max-width to allow full width */
         margin: 10px 0;
-
+        /* Add margin to separate the buttons */
+        padding: 10px;
     }
 }
