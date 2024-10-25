@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import './QuestionnaireMain.css';
-import Login from './Login';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+
+
 
 export default function OnboardingQuestionnaire({ onComplete }) {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({});
+  const { currentUser } = useAuth(); // Get the authentication state
+  const navigate = useNavigate(); // Use navigate for navigation
 
   const handleSelection = (choice) => {
     setAnswers(prev => ({ ...prev, [`step${step}`]: choice }));
@@ -16,6 +21,10 @@ export default function OnboardingQuestionnaire({ onComplete }) {
           onComplete?.(answers);
         }
       }, 150); //delay 150ms for ease of viewing
+  };
+
+  const handleLoginRedirect = () => {
+    navigate('/login'); // Navigate to the login page
   };
 
   const renderStep = () => {
@@ -77,20 +86,49 @@ export default function OnboardingQuestionnaire({ onComplete }) {
 
       case 3:
         return (
-          <div className="questionnaire-step">
-            <h2 className="step-title">Login to Join Us</h2>
-            <div>
-              <Login />
-            </div>
-          
+        <div className="questionnaire-step">
+          <h2 className="step-title">Join Us</h2>
+          <p>I need to update this to make it's own component called sign up or something later. Also both buttons take you to the google screen. Also needs logo. </p>
+          <div className="option-buttons">
+            <button
+              onClick={handleLoginRedirect}
+              className="option-button"
+            >
+              Login
+            </button>
+            <button
+              onClick={handleLoginRedirect}
+              className="option-button"
+            >
+              Create Account
+            </button>
           </div>
-        
+        </div>
         );
-
+      
       default:
         return null;
     }
   };
+
+  // the below was if you want it embedded in the flow of the quiz thing 
+
+  //     case 3:
+  //       return (
+  //         <div className="questionnaire-step">
+  //           <h2 className="step-title">Login to Join Us</h2>
+  //           <div>
+  //             <Login />
+  //           </div>
+          
+  //         </div>
+        
+  //       );
+
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   return (
     <div className="questionnaire-container">
