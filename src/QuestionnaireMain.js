@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './QuestionnaireMain.css';
+import Login from './Login';
 
 export default function OnboardingQuestionnaire({ onComplete }) {
   const [step, setStep] = useState(1);
@@ -77,29 +78,13 @@ export default function OnboardingQuestionnaire({ onComplete }) {
       case 3:
         return (
           <div className="questionnaire-step">
-            <h2 className="step-title">Let's Get Started</h2>
-            <div className="signup-form">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="form-input"
-              />
-              <input
-                type="password"
-                placeholder="Create your password"
-                className="form-input"
-              />
-              <button 
-                onClick={() => handleSelection('completed')}
-                className="submit-button"
-              >
-                Join now
-              </button>
-              <p className="terms-text">
-                By clicking Join now, you agree to our Terms & Conditions and Privacy Policy
-              </p>
+            <h2 className="step-title">Login to Join Us</h2>
+            <div>
+              <Login />
             </div>
+          
           </div>
+        
         );
 
       default:

@@ -1,5 +1,8 @@
 # Status
-
+## 10-25
+- worked on a new main page mainpage2 but accidentally edited a little bit of mainpage.css 
+ToDo: 
+- need to get mainpage.css consolidated. 
 ## 10-24-2024
 - learned some ways to measure performance (use profiler from react or just the recorder and performance panel) , but did not learn how to identify what exactly is causing the slowness. After implementing lazy loading and removing the query of profiles from app.js the latency appears to be improving . 
 - - continuing to try to adjust that pic of the dads, but i feel like maybe the pic isn't the prob . still good to try for learning. 

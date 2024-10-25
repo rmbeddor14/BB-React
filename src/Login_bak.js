@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './styles.css';
 import './Login.css';
 
 function Login() {
@@ -36,6 +37,7 @@ function Login() {
     };
 
     return (
+        <div className="login-page"> {/* Add this wrapper */}
             <div className="login-container">
                 <header className="login-header">
                     <div className="logo">
@@ -53,6 +55,7 @@ function Login() {
                     <p>Continue your journey to parenthood with us.</p>
                 </div>
             </div>
+        </div>
     );
 }
 

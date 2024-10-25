@@ -113,49 +113,49 @@ body {
     transform: scale(1.05);
     /* Slightly increase size on hover for a dynamic effect */
 }
-/* Footer buttons styling */
 
-.footer-buttons {
-    display: flex;
-    justify-content: space-around;
-    /* Evenly space the buttons */
-    gap: 10px;
-    margin: 30px 0 20px;
-    /* Add some spacing from other content */
-    padding: 15px;
-    /* Light grey transparent background */
-    border-radius: 12px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Slight shadow for a floating effect */
-}
 
-/* Style for the footer buttons */
-.footer-buttons .btn {
-    flex: 1;
-    max-width: 45%;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.3);
-    /* Semi-transparent grey */
-    color: #333;
-    border: none; 
-    text-align: center;
-    text-decoration: none;
-    font-size: 1em;
+/* Dropdown menu styles */
+.menu-icon {
     cursor: pointer;
-    backdrop-filter: blur(5px);
-    /* Optional frosted glass effect */
+    font-size: 2rem;
+    padding: 10px;
 }
 
+.dropdown-menu {
+    position: absolute;
+    top: 80px;
+    /* Adjust based on header height */
+    right: 30px;
+    background-color: rgba(255, 255, 255,0.95);
+    border-radius: 2px; /*rounded edge*/
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-/* Button hover effect */
-.footer-buttons .btn:hover {
+.dropdown-btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: #333;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.dropdown-btn:hover {
     background-color: rgba(207, 203, 211, 0.8);
-    /* Slightly darker on hover */
-    transform: scale(1.05);
-    /* Scale up slightly */
 }
 
-
+/* Hide the footer buttons */
+.footer-buttons {
+    display: none;
+}
 
 @media (max-width: 768px) {
 
@@ -205,4 +205,42 @@ body {
         /* Add margin to separate the buttons */
         padding: 10px;
     }
+
+
+         /* Mobile dropdown menu adjustments */
+         .dropdown-menu {
+             top: 60px;
+             /* Adjust based on the header height */
+             right: 10px;
+             width: 90%;
+             max-width: 300px;
+             border-radius: 12px;
+             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+             padding: 15px;
+         }
+    
+         .dropdown-btn {
+             padding: 12px;
+             font-size: 1em;
+             text-align: left;
+         }
+    
+         .dropdown-menu .dropdown-btn+.dropdown-btn {
+             margin-top: 5px;
+         }
+    
+         /* Make the welcome section more compact on mobile */
+         .welcome-section h1 {
+             font-size: 2rem;
+         }
+    
+         .welcome-section p {
+             font-size: 1.5rem;
+         }
+         
+    
+         /* Make the dropdown smoother and more visually appealing */
+         .dropdown-menu {
+             animation: slide-down 0.3s ease-out;
+         }
 }

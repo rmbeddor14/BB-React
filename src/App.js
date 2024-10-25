@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
+import LoginPage from './LoginPage';
 
 import MainPage2 from './MainPage2';
 
@@ -24,7 +25,7 @@ function App() {
 
 
           {/* Route for login */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
 
           {/* Protected routes */}
           <Route path="/" element={<PrivateRoute element={<MainPage />} />} />
