@@ -1,51 +1,76 @@
-// src/MainPage.js
-
+// src/MainPage2.js
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { getAuth, signOut } from 'firebase/auth';
-import './styles.css';
-import './MainPage.css';
+import { useNavigate } from 'react-router-dom';
+import Questionnaire_Main from './QuestionnaireMain';
+import './MainPage2.css';  // Keep your existing MainPage2.css for the background and basic layout
 
-function MainPage() {
-    const navigate = useNavigate();
+function MainPage2() {
+  const navigate = useNavigate();
 
-    const handleLogout = async () => {
-        const auth = getAuth();
-        try {
-            await signOut(auth);
-            navigate('/login', { replace: true });
-        } catch (error) {
-            console.error('Error during logout:', error);
-        }
-    };
+  const handleQuestionnaireComplete = (answers) => {
+    console.log('Questionnaire answers:', answers);
+    navigate('/create-profile');
+  };
 
-    const handleAdminNavigate = () => {
-        navigate('/admin');
-    };
-
-    return (
-        <div className="main-page">
-            <header className="header">
-                <div className="logo">
-                    <img src="img/icon2.png" alt="BabyBumps Logo" className="app-icon" />
-                    BabyBumps
-                </div>
-            </header>
-            <div className="hero-section">
-                <h1>Celebrate Your Fertility Journey</h1>
-                <p>Your one-stop platform for finding your perfect surrogate.</p>
-                <div className="action-buttons">
-                    <Link to="/create-profile" className="btn primary-btn">Create a Profile</Link>
-                    <Link to="/view-profiles" className="btn primary-btn">View Profiles</Link>
-                </div>
-            </div>
-            {/* Place the logout and admin buttons at the bottom of the content */}
-            <div className="footer-buttons">
-                <button onClick={handleLogout} className="btn secondary-btn">Logout</button>
-                <button onClick={handleAdminNavigate} className="btn secondary-btn">Admin</button>
-            </div>
+  return (
+    <div className="main-page">
+      <header className="header-main">
+        <div className="logo">
+          <img src="img/icon2.png" alt="BabyBumps Logo" className="app-icon" />
+          <span>BabyBumps</span>
         </div>
-    );
+      </header>
+
+      <section className="welcome-section">
+        <h1>Welcome to BabyBumps</h1>
+        <p>Your journey to parenthood starts here.</p>
+      </section>
+      <div>
+        <Questionnaire_Main onComplete={handleQuestionnaireComplete} />
+      </div>
+    </div>
+  );
 }
 
-export default MainPage;
+export default MainPage2;
+
+
+// //src/MainPage2.js
+// import React from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import Questionnaire_Main from './QuestionnaireMain';
+// import './MainPage2.css';  // Keep your existing MainPage2.css for the background and basic layout
+
+// function MainPage2() {
+//   const navigate = useNavigate();
+
+//   const handleQuestionnaireComplete = (answers) => {
+//     console.log('Questionnaire answers:', answers);
+//     navigate('/create-profile');
+//   };
+
+//   // Changed the layout structure to ensure the questionnaire displays properly
+//   return (
+//      <div className="main-page">
+//       <header className="header-main">
+//         <div className="logo">
+//           <img src="img/icon2.png" alt="BabyBumps Logo" className="app-icon" />
+//           <span>BabyBumps</span>
+//         </div>
+//       </header>
+
+//       {/* Add a new container for the main content */}
+//         <section className="welcome-section">
+//           <h1>Welcome to BabyBumps</h1>
+//           <p>Your journey to parenthood starts here.</p>
+//         </section>
+
+//         <section>
+//           <Questionnaire_Main onComplete={handleQuestionnaireComplete} />
+//         </section>
+
+//     </div>
+//   );
+// }
+
+// export default MainPage2;
