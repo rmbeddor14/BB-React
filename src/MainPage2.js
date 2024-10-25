@@ -140,10 +140,14 @@ function MainPage2() {
     setDropdownOpen((prevOpen) => !prevOpen);
   };
 
-  // Close the dropdown when clicking outside
+  // Close the dropdown when clicking outside, but ignore clicks on the menu icon
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        event.target.className !== 'menu-icon'
+      ) {
         setDropdownOpen(false);
       }
     };
