@@ -19,7 +19,7 @@
     /* Light grey transparent background */
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .step-title {
@@ -27,9 +27,9 @@
     font-weight: bold;
     color: white;
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 0px;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.153);
 }
 
 .option-buttons {
