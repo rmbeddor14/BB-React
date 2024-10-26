@@ -7,7 +7,6 @@ import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
 import LoginPage from './LoginPage';
 
-import MainPage2 from './MainPage';
 
 // Lazy load components
 const ProfileList = React.lazy(() => import('./ProfileList'));
@@ -26,9 +25,6 @@ function App() {
 
           
           
-          {/* route to mainpage2 for debug */}
-          <Route path="/mainpage2" element={<PrivateRoute element={<MainPage2 />} />} />
-
 
           {/* Route for login */}
           <Route path="/login" element={<LoginPage />} />

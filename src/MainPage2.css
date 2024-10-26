@@ -1,7 +1,21 @@
 /* MainPage2.css */
 
+/* Add slide-in-from-right animation */
+@keyframes slide-in-from-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
 .main-page {
-    padding: 0;
+    padding: 0px;
     margin: 0;
     text-align: center;
     background-size: cover;
@@ -13,16 +27,17 @@
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../public/img/family-stock-photo3.jpg') no-repeat center center/cover;
 }
 
-.logo {
+.main-page .logo {
     display: flex;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
+    color: white;
 }
 
 .app-icon {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     margin-right: 16px;
 }
 
@@ -31,8 +46,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background: rgba(207, 203, 211, 0.8);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-section {
@@ -77,10 +90,12 @@
 
 
 /* Dropdown menu styles */
+/* make sure to match to the logo */ 
 .menu-icon {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding: 10px;
+    color: white;
 }
 
 .dropdown-menu {
@@ -88,20 +103,23 @@
     top: 80px;
     /* Adjust based on header height */
     right: 30px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.9); /*eventually i think this would be nice as transparent like tinder's site for desktop*/
+    /* border-radius: 2px; */
     /*rounded edge*/
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    z-index: 1000;
+            /* Ensure this is higher than other elements */
 }
 
 .dropdown-btn {
     padding: 10px 20px;
     background: transparent;
-    color: #333;
+    color: black;  /*eventually i think this would be nice as white like tinder's site*/
+    text-shadow: 0.1rem;
     border: none;
     text-align: left;
     cursor: pointer;
@@ -120,19 +138,36 @@
 }
 @media (max-width: 768px) {
     .header-main {
-            flex-direction: column;
-            align-items: center;
-        }
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        /* Keep row layout */
+        align-items: center;
+        /* Center align vertically */
+        justify-content: space-between;
+        /* Space between logo and menu */
+        width: 100%;
+        padding: 20px 20px;
+        /* Optional: adjust padding to fit mobile layout */
+                box-sizing: border-box;
+                    /* Ensure padding doesn’t push elements */
+    }
 /* Mobile dropdown menu adjustments */
 .dropdown-menu {
-    top: 60px;
+    top: 20px; /*eventually maybe this should be at the very top like tinder*/ 
     /* Adjust based on the header height */
-    right: 10px;
-    width: 90%;
+    /* right: 10px; */
+    width: 50%;
     max-width: 300px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     padding: 15px;
+    right: 0;
+    /* Set right to 0 for full screen from the right */
+    max-width: none;
+    height: 100%;
+    animation: slide-in-from-right 0.3s ease-out;
+    background-color: rgb(214, 214, 214); /*mobile gets solid color*/
 }
 
 .dropdown-btn {
@@ -148,6 +183,7 @@
 /* Make the welcome section more compact on mobile */
 .welcome-section h1 {
     font-size: 3rem;
+    margin: 10px;
 }
 
 .welcome-section p {
@@ -155,8 +191,16 @@
 }
 
 
-/* Make the dropdown smoother and more visually appealing */
-.dropdown-menu {
-    animation: slide-down 0.3s ease-out;
+.dropdown-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+
+
 }
