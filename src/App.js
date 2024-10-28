@@ -6,6 +6,7 @@ import Login from './Login';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
 import LoginPage from './LoginPage';
+import ProfileTinderList from './ProfileTinderList';
 
 
 // Lazy load components
@@ -66,6 +67,10 @@ function App() {
               </Suspense>
             }
           />
+
+          {/* Add a route for the swipeable profile list */}
+          <Route path="/swipe-profiles" element={<PrivateRoute element={<ProfileTinderList />} />} />
+          
         </Routes>
       </AuthProvider>
     </Router>

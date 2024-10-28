@@ -1,4 +1,19 @@
 # Status
+
+## 10-28
+- swipe capability and persist to DB 
+
+![swipe demo](img/swipe_capability_v0_10_28.gif)
+- records in FireStore DB as {swiper Name, swiper ID, profile ID, profile Name, swipe direction, timestamp}
+- it's probably inefficient to do display names but can help at this early stage
+- files involved with this: 
+- - swipeableCard - gui component to display a card and permit users to swipe left/right
+- - swipeableList - handles a list of swipeableCards
+- - profileTinderList - pulls the profiles from firestore and displays in a swipeableList, with each profile getting a swiepableCard
+- - service/swipeService.js - handles persisting the swipe info to the firestore database 
+
+
+
 ## 10-25
 - made it faster and identified the cause of the 'loading" screen
 - made the main page more professional looking (code base is not professional though ) but took so long
