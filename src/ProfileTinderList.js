@@ -39,37 +39,3 @@ function ProfileTinderList() {
 }
 
 export default ProfileTinderList;
-
-// // ProfileTinderList.js
-// import React, { useEffect, useState } from 'react';
-// import { collection, getDocs } from 'firebase/firestore';
-// import { db } from './firebase-config';
-// import SwipeableList from './SwipeableList';
-// import { handleSwipe } from './services/swipeService';
-
-
-// function ProfileTinderList() {
-//   const [profiles, setProfiles] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProfiles = async () => {
-//       const profilesCollection = collection(db, 'profiles');
-//       const profileSnapshot = await getDocs(profilesCollection);
-//       const profileList = profileSnapshot.docs
-//         .map(doc => ({ id: doc.id, ...doc.data() }))
-//         .filter(profile => profile.status === 'approved'); // Filter for approved profiles
-//       setProfiles(profileList);
-//     };
-
-//     fetchProfiles();
-//   }, []);
-
-//   return (
-//     <div className="profile-tinder-list">
-//       <h2>Swipe Through Available Profiles</h2>
-//       <SwipeableList profiles={profiles} />
-//     </div>
-//   );
-// }
-
-// export default ProfileTinderList;
