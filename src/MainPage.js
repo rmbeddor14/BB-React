@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { useAuth } from './AuthContext';
 import QuestionnaireMain from './QuestionnaireMain';
-import './MainPage2.css';
+import './MainPage.css';
 
 function MainPage2() {
   const navigate = useNavigate();

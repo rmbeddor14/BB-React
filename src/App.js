@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import MainPage from './MainPage2';
+import MainPage from './MainPage';
 import ProfileForm from './ProfileForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Login';
