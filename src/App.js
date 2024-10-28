@@ -2,11 +2,9 @@ import React, { Suspense } from 'react';
 import MainPage from './MainPage';
 import ProfileForm from './ProfileForm';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './Login';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
 import LoginPage from './LoginPage';
-import ProfileTinderList from './ProfileTinderList';
 
 
 // Lazy load components
@@ -14,6 +12,7 @@ const ProfileList = React.lazy(() => import('./ProfileList'));
 const Profile = React.lazy(() => import('./Profile'));
 const AdminViewProfileList = React.lazy(() => import('./AdminViewProfileList'));
 const AdminViewProfile = React.lazy(() => import('./AdminViewProfile'));
+const ProfileTinderList = React.lazy(() => import('./ProfileTinderList'));
 
 function App() {
   return (
@@ -69,8 +68,15 @@ function App() {
           />
 
           {/* Add a route for the swipeable profile list */}
-          <Route path="/swipe-profiles" element={<PrivateRoute element={<ProfileTinderList />} />} />
+          {/* lazy load*/}
           
+          <Route path="/swipe-profiles" element={
+            <Suspense fallback={<div>Loading...</div>}>
+            <PrivateRoute element={<ProfileTinderList />} />
+            </Suspense>
+          }
+          />
+
         </Routes>
       </AuthProvider>
     </Router>

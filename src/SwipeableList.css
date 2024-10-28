@@ -1,0 +1,19 @@
+
+/* Card Container */
+.swipeable-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.126);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .swipeable-list {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 40px;
+    }
+}

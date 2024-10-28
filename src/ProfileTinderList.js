@@ -33,7 +33,6 @@ function ProfileTinderList() {
 
   return (
     <div className="profile-tinder-list">
-      <h2>Swipe Through Available Profiles</h2>
       <SwipeableList profiles={profiles} onSwipe={handleSwipeAction} />
     </div>
   );
