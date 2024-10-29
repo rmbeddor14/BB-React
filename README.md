@@ -1,9 +1,18 @@
 # Status
 
 ## 10-29
-- improvements to UI for homepage
-- working on persist image to object store with UID 
+- improvements to UI for homepage (slideshow to match e-harmony)
+- working on persist image to object store with UID (eventually changed this to also have /timestamp so I can do multiple profiles (though that wouldn't be relevant IRL))
+- made a seeker and a surrogate separate profile pages 
+- need data stuff so eventually we need to have the data separate and probably even just an admin profile that changes the way the form is done so that the admin can decide how to do the forms. right now too hard code with persist and retrieval of data.
+
+### demo of the latest 
+
+![latest demo](img/demo_10_29.gif)
+
+### persisting image data to cloud object storage
 ![persist image](img/persist_image.gif)
+
 
 ## 10-28
 - swipe capability and persist to DB 
