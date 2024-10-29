@@ -7,6 +7,7 @@ import PrivateRoute from './PrivateRoute';
 import LoginPage from './LoginPage';
 import SurrogateProfileForm from './SurrogateProfileForm';
 import SeekerProfileForm from './SeekerProfileForm';
+import Portal from './Portal';
 
 
 // Lazy load components
@@ -30,6 +31,8 @@ function App() {
 
           {/* Route for login */}
           <Route path="/login" element={<LoginPage />} />
+          
+
 
           <Route path="/create-profile" element={<PrivateRoute element={<ProfileForm onSubmit={() => {}} />} />} />
 
@@ -46,6 +49,16 @@ function App() {
               </Suspense>
             }
           />
+
+          <Route
+            path="/portal"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <PrivateRoute element={<Portal />} />
+              </Suspense>
+            }
+          />
+
           <Route
             path="/profile/:id"
             element={

@@ -40,6 +40,60 @@ function SeekerProfileForm({ onSubmit }) {
     setPartner2Collapsed(!partner2Collapsed);
   };
 
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   if (!imageURL) {
+//     alert("Please upload an image before submitting.");
+//     return;
+//   }
+//   setUploading(true);
+
+//   // Create a timestamp
+//   const timestamp = new Date().toISOString();
+
+//   // Construct the name field
+//   const name = showPartner2 && formData.partner2Name
+//     ? `${formData.partner1Name} & ${formData.partner2Name}`
+//     : formData.partner1Name;
+
+//   // Construct profileData with only fields in the form, adding name and timestamp
+//   const profileData = {
+//     name,  // Set the combined name here
+//     partner1: {
+//       name: formData.partner1Name || undefined,
+//       age: formData.partner1Age || undefined,
+//     },
+//     partner2: showPartner2
+//       ? {
+//           name: formData.partner2Name || undefined,
+//           age: formData.partner2Age || undefined,
+//         }
+//       : undefined,
+//     location: formData.location || undefined,
+//     maritalStatus: formData.maritalStatus || undefined,
+//     contactFrequency: formData.contactFrequency || undefined,
+//     imageURL,
+//     type: 'seeker',
+//     status: 'pending',
+//     timestamp, // Add the timestamp to profileData
+//   };
+
+//   // Clean up profileData by removing undefined values
+//   const cleanProfileData = JSON.parse(
+//     JSON.stringify(profileData, (key, value) => (value === undefined ? undefined : value))
+//   );
+
+//   try {
+//     const docRef = await addDoc(collection(db, 'profiles'), cleanProfileData);
+//     onSubmit(cleanProfileData);
+//     navigate(`/profile/${docRef.id}`);
+//   } catch (error) {
+//     console.error("Error adding profile: ", error);
+//   } finally {
+//     setUploading(false);
+//   }
+// };
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (!imageURL) {
@@ -48,17 +102,14 @@ const handleSubmit = async (e) => {
   }
   setUploading(true);
 
-  // Create a timestamp
   const timestamp = new Date().toISOString();
-
-  // Construct the name field
   const name = showPartner2 && formData.partner2Name
     ? `${formData.partner1Name} & ${formData.partner2Name}`
     : formData.partner1Name;
 
-  // Construct profileData with only fields in the form, adding name and timestamp
+  // Add `uid` to the profileData to persist user ID
   const profileData = {
-    name,  // Set the combined name here
+    name,
     partner1: {
       name: formData.partner1Name || undefined,
       age: formData.partner1Age || undefined,
@@ -75,10 +126,10 @@ const handleSubmit = async (e) => {
     imageURL,
     type: 'seeker',
     status: 'pending',
-    timestamp, // Add the timestamp to profileData
+    timestamp,
+    uid: currentUser.uid,  // Add `uid` to the profile data here
   };
 
-  // Clean up profileData by removing undefined values
   const cleanProfileData = JSON.parse(
     JSON.stringify(profileData, (key, value) => (value === undefined ? undefined : value))
   );
@@ -93,6 +144,7 @@ const handleSubmit = async (e) => {
     setUploading(false);
   }
 };
+
 
   return (
     <div className="container card">
