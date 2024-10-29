@@ -1,37 +1,47 @@
 /* MainPage.css */
 
-
-.main-page.slideshow {
-    animation: fadeSlide 16s ease-in-out infinite;
+.main-page.slideshow::before,
+.main-page.slideshow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-size: cover;
     background-position: center;
-    transition-delay: 0.5s;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: -1;
+    /* Place these pseudo-elements behind other content */
 }
 
-@keyframes fadeSlide {
-    0% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('../public/img/family-stock-photo3.jpg');
-    }
+.main-page.slideshow::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../public/img/family-stock-photo3.jpg');
+    background-color: rgba(240, 248, 255, 0.298);
+    opacity: 1;
+    /* Start visible */
+}
 
+.main-page.slideshow::after {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../public/img/family-stock-photo4.jpg');
+    animation: crossfade 16s infinite;
+}
+
+@keyframes crossfade {
+
+    0%,
     45% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('../public/img/family-stock-photo3.jpg');
+        opacity: 0;
     }
 
-    50% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('../public/img/family-stock-photo4.jpg');
-    }
-
+    50%,
     95% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('../public/img/family-stock-photo4.jpg');
+        opacity: 1;
     }
 
     100% {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('../public/img/family-stock-photo3.jpg');
+        opacity: 0;
     }
 }
 /* Add slide-in-from-right animation */
@@ -66,7 +76,9 @@
     align-items: center;
     font-size: 1.8em;
     font-weight: bold;
-    color: white;
+    color: #f0f0f0;
+    font-weight: 900;
+
 }
 
 .app-icon {
