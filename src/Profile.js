@@ -1,3 +1,7 @@
+//  src/Profile.js
+// component for retrieving and displaying a profile
+
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';

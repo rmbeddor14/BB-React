@@ -1,5 +1,10 @@
 # Status
 
+## 10-29
+- improvements to UI for homepage
+- working on persist image to object store with UID 
+![persist image](img/persist_image.gif)
+
 ## 10-28
 - swipe capability and persist to DB 
 

@@ -1,4 +1,7 @@
 // ProfileCard.js
+// GUI component for displaying a profile card with a name and image
+
+
 import React from 'react';
 import './ProfileCard.css';
 
