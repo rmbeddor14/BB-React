@@ -8,99 +8,164 @@ import { db } from './firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from './AuthContext'; 
 import ImageUpload from './ImageUpload';
+import PartnerForm from './PartnerForm';
 
 function SeekerProfileForm({ onSubmit }) {
   const navigate = useNavigate();
   const { currentUser } = useAuth(); 
   const [imageURL, setImageURL] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [showPartner2, setShowPartner2] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [partner1Collapsed, setPartner1Collapsed] = useState(false);
+  const [partner2Collapsed, setPartner2Collapsed] = useState(false);
 
   const handleImageUpload = (url) => {
     setImageURL(url);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!imageURL) {
-      alert("Please upload an image before submitting.");
-      return;
-    }
-    setUploading(true);
-
-    const formData = new FormData(e.target);
-    const profileData = {
-      name: formData.get('name'),
-      age: formData.get('age'),
-      location: formData.get('location'),
-      children: formData.get('children'),
-      maritalStatus: formData.get('maritalStatus'),
-      hobbies: formData.get('hobbies').split(',').map(h => h.trim()),
-      lifestyle: formData.get('lifestyle').split(',').map(l => l.trim()),
-      surrogacyType: formData.get('surrogacyType'),
-      preferredLifestyle: formData.get('preferredLifestyle').split(',').map(p => p.trim()),
-      contactFrequency: formData.get('contactFrequency'),
-      imageURL, 
-      type: 'seeker',
-      status: 'pending' 
-    };
-
-    try {
-      const docRef = await addDoc(collection(db, 'profiles'), profileData);
-      onSubmit(profileData);
-      navigate(`/profile/${docRef.id}`); // Redirect to the new profile page
-    } catch (error) {
-      console.error("Error adding profile: ", error);
-    } finally {
-      setUploading(false);
-    }
+  const handleAddPartner = () => {
+    setShowPartner2(true);
   };
+
+  const onInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const togglePartner1Collapse = () => {
+    setPartner1Collapsed(!partner1Collapsed);
+  };
+
+  const togglePartner2Collapse = () => {
+    setPartner2Collapsed(!partner2Collapsed);
+  };
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!imageURL) {
+    alert("Please upload an image before submitting.");
+    return;
+  }
+  setUploading(true);
+
+  // Create a timestamp
+  const timestamp = new Date().toISOString();
+
+  // Construct the name field
+  const name = showPartner2 && formData.partner2Name
+    ? `${formData.partner1Name} & ${formData.partner2Name}`
+    : formData.partner1Name;
+
+  // Construct profileData with only fields in the form, adding name and timestamp
+  const profileData = {
+    name,  // Set the combined name here
+    partner1: {
+      name: formData.partner1Name || undefined,
+      age: formData.partner1Age || undefined,
+    },
+    partner2: showPartner2
+      ? {
+          name: formData.partner2Name || undefined,
+          age: formData.partner2Age || undefined,
+        }
+      : undefined,
+    location: formData.location || undefined,
+    maritalStatus: formData.maritalStatus || undefined,
+    contactFrequency: formData.contactFrequency || undefined,
+    imageURL,
+    type: 'seeker',
+    status: 'pending',
+    timestamp, // Add the timestamp to profileData
+  };
+
+  // Clean up profileData by removing undefined values
+  const cleanProfileData = JSON.parse(
+    JSON.stringify(profileData, (key, value) => (value === undefined ? undefined : value))
+  );
+
+  try {
+    const docRef = await addDoc(collection(db, 'profiles'), cleanProfileData);
+    onSubmit(cleanProfileData);
+    navigate(`/profile/${docRef.id}`);
+  } catch (error) {
+    console.error("Error adding profile: ", error);
+  } finally {
+    setUploading(false);
+  }
+};
 
   return (
     <div className="container card">
       <Link to="/" className="backLink">← Back to Main</Link>
-      <h2>Create Your Surrogate Profile</h2>
+      <h2>Tell Us About Yourself</h2>
       <form onSubmit={handleSubmit}>
+
+        {/* Partner 1 Form */}
+        <PartnerForm
+          partnerId="partner1"
+          formData={formData}
+          onInputChange={onInputChange}
+          collapsed={partner1Collapsed}
+          toggleCollapse={togglePartner1Collapse}
+        />
+
+        {/* Add Partner Button */}
+        {!showPartner2 && (
+          <button
+            type="button"
+            className="add-partner-button"
+            onClick={handleAddPartner}
+          >
+            + Add Partner
+          </button>
+        )}
+
+        {/* Partner 2 Form */}
+        {showPartner2 && (
+          <PartnerForm
+            partnerId="partner2"
+            formData={formData}
+            onInputChange={onInputChange}
+            collapsed={partner2Collapsed}
+            toggleCollapse={togglePartner2Collapse}
+          />
+        )}
+
+        {/* Shared Fields */}
+
+        <h3 className="shared-attributes-heading">Couple Information</h3>
         <div className="inputGroup">
-          <label htmlFor="name">Full Name:</label>
-          <input type="text" name="name" id="name" required />
+          <label htmlFor="Location">Location (City, State)</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            value={formData.location || ''}
+            onChange={onInputChange}
+          />
         </div>
         <div className="inputGroup">
-          <label htmlFor="age">Age:</label>
-          <input type="number" name="age" id="age" required />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="location">Location (City, State):</label>
-          <input type="text" name="location" id="location" required />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="children">Number of Children:</label>
-          <input type="number" name="children" id="children" required />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="maritalStatus">Marital Status:</label>
-          <input type="text" name="maritalStatus" id="maritalStatus" />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="hobbies">Hobbies (comma separated):</label>
-          <input type="text" name="hobbies" id="hobbies" />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="lifestyle">Current Lifestyle (comma separated):</label>
-          <input type="text" name="lifestyle" id="lifestyle" />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="surrogacyType">Surrogacy Type (Traditional/Gestational):</label>
-          <input type="text" name="surrogacyType" id="surrogacyType" />
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="preferredLifestyle">Preferred Intended Parent Lifestyle (comma separated):</label>
-          <input type="text" name="preferredLifestyle" id="preferredLifestyle" />
+          <label htmlFor="maritalStatus">Marital Status</label>
+          <input
+            type="text"
+            name="maritalStatus"
+            id="maritalStatus"
+            value={formData.maritalStatus || ''}
+            onChange={onInputChange}
+          />
         </div>
         <div className="inputGroup">
           <label htmlFor="contactFrequency">Preferred Frequency of Contact:</label>
-          <input type="text" name="contactFrequency" id="contactFrequency" />
+          <input
+            type="text"
+            name="contactFrequency"
+            id="contactFrequency"
+            value={formData.contactFrequency || ''}
+            onChange={onInputChange}
+          />
         </div>
 
+        {/* Image Upload Component */}
         {currentUser && (
           <ImageUpload onUpload={handleImageUpload} userId={currentUser.uid} />
         )}

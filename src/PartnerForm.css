@@ -1,0 +1,109 @@
+/* PartnerForm.css */
+
+.partner-profile-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.partners-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.partner-section {
+    position: relative;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.partner-input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.short-input {
+    width: 70px;
+}
+
+.input-field:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background: white;
+    color: #4CAF50;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.add-button:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.remove-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.remove-button:hover {
+    color: red;
+}
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #111;
+}

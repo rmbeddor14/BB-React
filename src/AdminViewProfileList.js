@@ -35,9 +35,22 @@ function AdminViewProfileList() {
     setProfiles(profiles.filter(profile => profile.id !== id)); // Remove the rejected profile from the state
   };
 
+  // const filteredProfiles = profiles
+  //   .filter(profile => filter === 'all' || profile.status === filter)
+  //   .filter(profile => profile.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  // add check for when name didn't come thru 
+  // const filteredProfiles = profiles
+  // .filter(profile => filter === 'all' || profile.status === filter)
+  // .filter(profile => profile.name && profile.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
   const filteredProfiles = profiles
-    .filter(profile => filter === 'all' || profile.status === filter)
-    .filter(profile => profile.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  .filter(profile => filter === 'all' || profile.status === filter)
+  .filter(profile => {
+    const profileName = profile.name ? profile.name.toLowerCase() : "no name";
+    return profileName.includes(searchQuery.toLowerCase());
+  });
+
 
   return (
     <div className="admin-view-profiles">
