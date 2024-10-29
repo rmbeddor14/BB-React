@@ -66,12 +66,17 @@ function SwipeableCard({ profile, onSwipe, isMobile }) {
         <Profile profileData={profile} /> // Pass profile data to Profile component
       )}
 
-      {!isMobile && (
+      {/* {!isMobile && (
         <div className="swipe-buttons">
           <button onClick={handleDislikeClick} className="swipe-button dislike"></button>
           <button onClick={handleLikeClick} className="swipe-button like"></button>
         </div>
-      )}
+      )} */}
+      <div className="swipe-buttons">
+        <button onClick={handleDislikeClick} className="swipe-button dislike"></button>
+        <button onClick={handleLikeClick} className="swipe-button like"></button>
+        </div>
+
     </div>
   );
 }
