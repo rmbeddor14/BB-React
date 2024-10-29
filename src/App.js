@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
 import LoginPage from './LoginPage';
+import SurrogateProfileForm from './SurrogateProfileForm';
+import SeekerProfileForm from './SeekerProfileForm';
 
 
 // Lazy load components
@@ -30,6 +32,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/create-profile" element={<PrivateRoute element={<ProfileForm onSubmit={() => {}} />} />} />
+
+          <Route path="/create-surrogate-profile" element={<PrivateRoute element={<SurrogateProfileForm onSubmit={() => {}} />} />} />
+
+          <Route path="/create-seeker-profile" element={<PrivateRoute element={<SeekerProfileForm onSubmit={() => {}} />} />} />
 
           {/* Lazy-loaded profile-related routes */}
           <Route

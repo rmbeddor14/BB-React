@@ -1,4 +1,4 @@
-// src/ProfileForm.js
+// src/SeekerProfileForm.js
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,24 +6,28 @@ import './styles.css';
 import './ProfileForm.css';
 import { db } from './firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
-import { useAuth } from './AuthContext'; // Import the AuthContext
-import ImageUpload from './ImageUpload';  // Import ImageUpload component
+import { useAuth } from './AuthContext'; 
+import ImageUpload from './ImageUpload';
 
-function ProfileForm({ onSubmit }) {
+function SeekerProfileForm({ onSubmit }) {
   const navigate = useNavigate();
-  const { currentUser } = useAuth(); // Get the authenticated user
+  const { currentUser } = useAuth(); 
   const [imageURL, setImageURL] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
-  // Callback for ImageUpload to set image URL
   const handleImageUpload = (url) => {
-    setImageURL(url); // Save the uploaded image URL to state
+    setImageURL(url);
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    if (!imageURL) {
+      alert("Please upload an image before submitting.");
+      return;
+    }
+    setUploading(true);
 
+    const formData = new FormData(e.target);
     const profileData = {
       name: formData.get('name'),
       age: formData.get('age'),
@@ -35,27 +39,29 @@ function ProfileForm({ onSubmit }) {
       surrogacyType: formData.get('surrogacyType'),
       preferredLifestyle: formData.get('preferredLifestyle').split(',').map(p => p.trim()),
       contactFrequency: formData.get('contactFrequency'),
-      imageURL,  // Add the uploaded image URL here
-      status: 'pending'
+      imageURL, 
+      type: 'seeker',
+      status: 'pending' 
     };
 
     try {
-      // Submit profile data to Firestore
-      await addDoc(collection(db, 'profiles'), profileData);
+      const docRef = await addDoc(collection(db, 'profiles'), profileData);
       onSubmit(profileData);
-      navigate('/');
+      navigate(`/profile/${docRef.id}`); // Redirect to the new profile page
     } catch (error) {
       console.error("Error adding profile: ", error);
+    } finally {
+      setUploading(false);
     }
   };
 
   return (
     <div className="container card">
       <Link to="/" className="backLink">← Back to Main</Link>
-      <h2>Fill Out Your Profile</h2>
+      <h2>Create Your Surrogate Profile</h2>
       <form onSubmit={handleSubmit}>
         <div className="inputGroup">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Full Name:</label>
           <input type="text" name="name" id="name" required />
         </div>
         <div className="inputGroup">
@@ -63,7 +69,7 @@ function ProfileForm({ onSubmit }) {
           <input type="number" name="age" id="age" required />
         </div>
         <div className="inputGroup">
-          <label htmlFor="location">Location:</label>
+          <label htmlFor="location">Location (City, State):</label>
           <input type="text" name="location" id="location" required />
         </div>
         <div className="inputGroup">
@@ -79,31 +85,39 @@ function ProfileForm({ onSubmit }) {
           <input type="text" name="hobbies" id="hobbies" />
         </div>
         <div className="inputGroup">
-          <label htmlFor="lifestyle">Lifestyle (comma separated):</label>
+          <label htmlFor="lifestyle">Current Lifestyle (comma separated):</label>
           <input type="text" name="lifestyle" id="lifestyle" />
         </div>
         <div className="inputGroup">
-          <label htmlFor="surrogacyType">Surrogacy Type:</label>
+          <label htmlFor="surrogacyType">Surrogacy Type (Traditional/Gestational):</label>
           <input type="text" name="surrogacyType" id="surrogacyType" />
         </div>
         <div className="inputGroup">
-          <label htmlFor="preferredLifestyle">Preferred Lifestyle (comma separated):</label>
+          <label htmlFor="preferredLifestyle">Preferred Intended Parent Lifestyle (comma separated):</label>
           <input type="text" name="preferredLifestyle" id="preferredLifestyle" />
         </div>
         <div className="inputGroup">
-          <label htmlFor="contactFrequency">Frequency of Contact:</label>
+          <label htmlFor="contactFrequency">Preferred Frequency of Contact:</label>
           <input type="text" name="contactFrequency" id="contactFrequency" />
         </div>
 
-        {/* ImageUpload Component with userId and callback */}
         {currentUser && (
           <ImageUpload onUpload={handleImageUpload} userId={currentUser.uid} />
         )}
 
-        <button type="submit" className="submitButton">Submit</button>
+        {imageURL && (
+          <div className="image-preview-container">
+            <h3>Uploaded Image Preview:</h3>
+            <img src={imageURL} alt="Uploaded Profile" className="image-preview" />
+          </div>
+        )}
+
+        <button type="submit" className="submitButton" disabled={uploading}>
+          {uploading ? "Submitting..." : "Submit Profile"}
+        </button>
       </form>
     </div>
   );
 }
 
-export default ProfileForm;
+export default SeekerProfileForm;
