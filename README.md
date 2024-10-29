@@ -6,7 +6,11 @@
 - made a seeker and a surrogate separate profile pages 
 - need data stuff so eventually we need to have the data separate and probably even just an admin profile that changes the way the form is done so that the admin can decide how to do the forms. right now too hard code with persist and retrieval of data.
 
-### demo of the latest 
+### demo of the latest (10/29/2024)
+- create seeker profile with the new seeker form
+- approve in admin portal
+- swipe and see it 
+- click on the card to see more profile data 
 
 ![latest demo](img/demo_10_29.gif)
 
