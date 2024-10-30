@@ -1,18 +1,31 @@
+//src/AdminFieldManager.js
+// move up and move down not working right
 import React, { useState, useEffect } from 'react';
 import { db } from './firebase-config';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { useAuth } from './AuthContext'; // Example context for retrieving UID
+import { useAuth } from './AuthContext';
 
-// should update so it includes that if you don't change the form at all that it will not save to reduce writes to db 
+// Helper function to convert a label to camelCase
+function toCamelCase(str) {
+  return str
+    .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters
+    .trim() // Remove leading and trailing spaces
+    .replace(/\s+/g, ' ') // Replace multiple spaces with a single space
+    .toLowerCase()
+    .replace(/ (.)/g, (match, chr) => chr.toUpperCase()); // Convert spaces to camelCase
+}
+
 function AdminFieldManager() {
-  const { currentUser } = useAuth(); // Access current user information
+  const { currentUser } = useAuth();
   const [fields, setFields] = useState([]);
-  const [formId] = useState('seekerForm'); // Specify formId if you have multiple forms
+  const [formId] = useState('seekerForm');
   const [newField, setNewField] = useState({
+    section: '',
     name: '',
     label: '',
     type: 'text',
     required: false,
+    section_collapsed: false,
     options: [],
     placeholder: ''
   });
@@ -29,6 +42,24 @@ function AdminFieldManager() {
     loadFields();
   }, [formId]);
 
+  const handleLabelChange = (e) => {
+    const label = e.target.value;
+    setNewField({
+      ...newField,
+      label,
+      name: `${toCamelCase(newField.section)}_${toCamelCase(label)}`
+    });
+  };
+
+  const handleSectionChange = (e) => {
+    const section = e.target.value;
+    setNewField({
+      ...newField,
+      section,
+      name: `${toCamelCase(section)}_${toCamelCase(newField.label)}`
+    });
+  };
+
   const handleAddOrEditField = () => {
     if (editingIndex !== null) {
       const updatedFields = fields.map((field, index) =>
@@ -39,7 +70,7 @@ function AdminFieldManager() {
     } else {
       setFields([...fields, newField]);
     }
-    setNewField({ name: '', label: '', type: 'text', required: false, options: [], placeholder: '' });
+    setNewField({ section: '', name: '', label: '', type: 'text', required: false, options: [], placeholder: '' });
   };
 
   const handleRemoveField = (index) => {
@@ -50,21 +81,32 @@ function AdminFieldManager() {
     setNewField(fields[index]);
     setEditingIndex(index);
   };
+
+  const handleMoveUp = (index) => {
+    if (index === 0) return; // If it's the first item, do nothing
+    const reorderedFields = [...fields];
+    [reorderedFields[index - 1], reorderedFields[index]] = [reorderedFields[index], reorderedFields[index - 1]];
+    setFields(reorderedFields);
+  };
+
+  const handleMoveDown = (index) => {
+    if (index === fields.length - 1) return; // If it's the last item, do nothing
+    const reorderedFields = [...fields];
+    [reorderedFields[index], reorderedFields[index + 1]] = [reorderedFields[index + 1], reorderedFields[index]];
+    setFields(reorderedFields);
+  };
+
   const handleSaveFields = async () => {
     const timestamp = new Date().toISOString();
 
     const fieldData = {
       fields,
       lastUpdated: timestamp,
-      submittedByUID: currentUser?.uid || 'unknown', // Save the UID of the submitting user
-      submittedByName: currentUser?.displayName || 'unknown' // Save the name of the submitting user
-
+      submittedByUID: currentUser?.uid || 'unknown',
+      submittedByName: currentUser?.displayName || 'unknown'
     };
 
-    // Save to formId/latest (overwrites each time)
     await setDoc(doc(db, 'formFields', formId, 'latest', 'latest'), fieldData);
-
-    // Save to formId/timestamp for historical record
     await setDoc(doc(db, 'formFields', formId, 'versions', timestamp), fieldData);
 
     alert('Fields saved with timestamp!');
@@ -78,30 +120,36 @@ function AdminFieldManager() {
       <div>
         <input
           type="text"
-          placeholder="Unique identifier (e.g., location)"
-          value={newField.name}
-          onChange={(e) => setNewField({ ...newField, name: e.target.value })}
+          placeholder="Section (Partner 1, Partner 2, or Shared)"
+          value={newField.section}
+          onChange={handleSectionChange}
         />
         <input
           type="text"
           placeholder="Label (e.g., Location (City, State))"
           value={newField.label}
-          onChange={(e) => setNewField({ ...newField, label: e.target.value })}
+          onChange={handleLabelChange}
         />
-        <select
-          value={newField.type}
-          onChange={(e) => setNewField({ ...newField, type: e.target.value })}
-        >
-          <option value="text">Text</option>
-          <option value="number">Number</option>
-          <option value="dropdown">Dropdown</option>
-        </select>
+        <input
+          type="text"
+          placeholder="Computer Label (Generated)"
+          value={newField.name}
+          readOnly
+        />
         <label>
           Required:
           <input
             type="checkbox"
             checked={newField.required}
             onChange={(e) => setNewField({ ...newField, required: e.target.checked })}
+          />
+        </label>
+        <label>
+          Section Collapsed on Default:
+          <input
+            type="checkbox"
+            checked={newField.section_collapsed}
+            onChange={(e) => setNewField({ ...newField, section_collapsed: e.target.checked })}
           />
         </label>
         {newField.type === 'dropdown' && (
@@ -119,19 +167,35 @@ function AdminFieldManager() {
         </button>
       </div>
 
-      {/* Display Current Fields with Edit and Remove Options */}
+      {/* Group and Display Current Fields by Section */}
       <h3>Current Fields</h3>
-      <ul>
-        {fields.map((field, index) => (
-          <li key={index}>
-            <strong>{field.label}</strong> ({field.type})
-            {field.required && ' *'}
-            {field.type === 'dropdown' && ` - Options: ${field.options.join(', ')}`}
-            <button onClick={() => handleEditField(index)}>Edit</button>
-            <button onClick={() => handleRemoveField(index)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+      {Object.entries(
+        fields.reduce((acc, field) => {
+          const section = field.section;
+          if (!acc[section]) {
+            acc[section] = [];
+          }
+          acc[section].push(field);
+          return acc;
+        }, {})
+      ).map(([section, sectionFields]) => (
+        <div key={section}>
+          <h4>{section.charAt(0).toUpperCase() + section.slice(1)}</h4>
+          <ul>
+            {sectionFields.map((field, index) => (
+              <li key={`${section}-${index}`}>
+                <strong>{field.label}</strong> ({field.type})
+                {field.required && ' *'}
+                {field.type === 'dropdown' && ` - Options: ${field.options.join(', ')}`}
+                <button onClick={() => handleEditField(index)}>Edit</button>
+                <button onClick={() => handleRemoveField(index)}>Remove</button>
+                <button onClick={() => handleMoveUp(index)}>{'\u25B2'}</button>
+                <button onClick={() => handleMoveDown(index)}>{'\u25BC'}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
       <button onClick={handleSaveFields}>Save All Fields</button>
     </div>
