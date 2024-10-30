@@ -1,5 +1,30 @@
 # Status
 
+## 10-30
+- admin dynamic form building functionality first steps - you can check it out at `/admin-field-manager` and `/dynamic-form`
+
+- not connected to the rest of the app yet so all the gui components for profile form and profile viewing pull from the hard code not the dynamic admin created fields. that is next 
+
+
+![demo of dynamic form filling 10-30](img/demo_of_dynamic_form_filling_v0_10_30.gif)
+
+- dynamic fields was tricky, tried to minimize structure but do need some structure in the firebase . decided on
+
+- `formFields/{formID}/versions/{timestamp}` : keeps a record of everytime someone submits
+
+- `formFields/{formID}/latest/latest` : stores the latest 
+
+- persisting twice is better than constantly querying the versions IMO
+
+- formID is like “seekerForm” or “surrogateForm” 
+
+- the issue was also how to organize sections (because like you might want collapsable sections for like Partner 1 Partner 2) 
+
+- haven’t implemented it so it writes to surrogate or seeker forms yet. will need to do that and then recreate everyon’e sprofile and make sure it works in the viewable gui components. 
+
+- a lot of work but i think it will make the app 100x better because Victoria or the admin can directly edit the form. you won’t need to know jsx to make edits to the form.
+
+
 ## 10-29
 - improvements to UI for homepage (slideshow to match e-harmony)
 - working on persist image to object store with UID (eventually changed this to also have /timestamp so I can do multiple profiles (though that wouldn't be relevant IRL))
