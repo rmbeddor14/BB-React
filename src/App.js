@@ -17,6 +17,10 @@ const AdminViewProfileList = React.lazy(() => import('./AdminViewProfileList'));
 const AdminViewProfile = React.lazy(() => import('./AdminViewProfile'));
 const ProfileTinderList = React.lazy(() => import('./ProfileTinderList'));
 
+{/* testing admin field manager */}
+const AdminFieldManager = React.lazy(() => import('./AdminFieldManager'));
+const DynamicForm = React.lazy(() => import('./DynamicForm'));
+
 function App() {
   return (
     <Router>
@@ -26,8 +30,24 @@ function App() {
           {/*open to public points to mainpage2 */}
           <Route path="/" element={<MainPage />} />
 
-          
-          
+          {/* testing admin field manager and dynamic form */}
+          <Route
+            path="/admin-field-manager"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <PrivateRoute element={<AdminFieldManager />} />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/dynamic-form"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <PrivateRoute element={<DynamicForm />} />
+              </Suspense>
+            }
+          />
 
           {/* Route for login */}
           <Route path="/login" element={<LoginPage />} />
