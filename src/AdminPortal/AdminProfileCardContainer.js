@@ -1,7 +1,7 @@
 // src/AdminProfileCardContainer.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProfileCard from './ProfileCard';
+import ProfileCard from '../ProfileCard';
 import './AdminProfileCardContainer.css';
 
 function AdminProfileCardContainer({ profile, onApprove, onReject }) {

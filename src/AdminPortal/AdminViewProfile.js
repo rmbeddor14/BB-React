@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, updateDoc, addDoc, collection } from 'firebase/firestore';
-import { db } from './firebase-config';
-import Profile from './Profile';
-import './Profile.css';
+import { db } from '../firebase-config';
+import Profile from '../Profile.js';
+import '../Profile.css';
 import './AdminViewProfile.css'; // Import the CSS file for AdminViewProfile
 
 

@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
-import { db } from './firebase-config';
+import { db } from '../firebase-config';
 import AdminProfileCardContainer from './AdminProfileCardContainer';
-import './styles.css'; // Import the centralized CSS file
+import '../styles.css'; // Import the centralized CSS file
 import './AdminViewProfileList.css'; // Import the AdminViewProfileList-specific CSS file
 
 function AdminViewProfileList() {

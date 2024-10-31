@@ -1,15 +1,33 @@
-// SwipeableCard.js
-import React, { useState } from 'react';
-import Profile from './Profile'; // Import Profile component
-import './SwipeableCard.css';
 
-function SwipeableCard({ profile, onSwipe, isMobile }) {
+
+// SwipeableCard2.js
+import React, { useState, useEffect } from 'react';
+import Profile from './Profile2'; // Import Profile component
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase-config';
+import '../SwipeableCard.css';
+
+function SwipeableCard2({ profile, onSwipe, isMobile }) {
   const [showDetails, setShowDetails] = useState(false);
   const [swipeStart, setSwipeStart] = useState(null);
+  const [sections, setSections] = useState([]);
+
+  // Load form structure from Firestore to dynamically render fields
+  useEffect(() => {
+    const loadFormStructure = async () => {
+      const formRef = doc(db, 'formFields', 'seekerForm', 'latest', 'latest');
+      const formSnap = await getDoc(formRef);
+      if (formSnap.exists()) {
+        setSections(formSnap.data().sections || []);
+      } else {
+        console.error('Form structure not found in Firestore.');
+      }
+    };
+    loadFormStructure();
+  }, []);
 
   // Toggle details view on card click
-  const handleCardClick = (e) => {
-    // Ensure swipe gestures don’t trigger the click functionality
+  const handleCardClick = () => {
     if (swipeStart === null) {
       setShowDetails(!showDetails);
     }
@@ -26,7 +44,7 @@ function SwipeableCard({ profile, onSwipe, isMobile }) {
     if (isMobile && swipeStart !== null) {
       const swipeEnd = e.changedTouches[0].clientX;
       const swipeDistance = swipeStart - swipeEnd;
-      setSwipeStart(null); // Reset swipeStart
+      setSwipeStart(null);
 
       if (swipeDistance > 100) {
         onSwipe('left', profile.id);
@@ -58,27 +76,21 @@ function SwipeableCard({ profile, onSwipe, isMobile }) {
         // Front of the card (Basic Info)
         <>
           <img src={profile.imageURL} alt={profile.name} className="profile-image" />
-          <h3>{profile.name}</h3>
-          <p>{profile.location}</p>
+          <h3>{profile.name || "Name not provided"}</h3>
+          <p>{profile.location || "Location not provided"}</p>
         </>
       ) : (
         // Back of the card (Full Profile Info using Profile component)
         <Profile profileData={profile} /> // Pass profile data to Profile component
       )}
-
-      {/* {!isMobile && (
-        <div className="swipe-buttons">
-          <button onClick={handleDislikeClick} className="swipe-button dislike"></button>
-          <button onClick={handleLikeClick} className="swipe-button like"></button>
-        </div>
-      )} */}
+      
+      {/* Swipe buttons for mobile or desktop */}
       <div className="swipe-buttons">
         <button onClick={handleDislikeClick} className="swipe-button dislike"></button>
         <button onClick={handleLikeClick} className="swipe-button like"></button>
-        </div>
-
+      </div>
     </div>
   );
 }
 
-export default SwipeableCard;
+export default SwipeableCard2;
