@@ -58,7 +58,6 @@ function App() {
           
 
 
-          <Route path="/create-profile" element={<PrivateRoute element={<ProfileForm onSubmit={() => {}} />} />} />
 
           <Route path="/create-surrogate-profile" element={<PrivateRoute element={<SurrogateProfileForm onSubmit={() => {}} />} />} />
 
