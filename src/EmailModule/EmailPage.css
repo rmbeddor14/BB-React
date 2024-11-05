@@ -1,0 +1,122 @@
+/* EmailPage.css */
+
+.email-page {
+    max-width: 1000px;
+    /* Slightly wider to accommodate larger cards */
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.template-grid {
+    display: grid;
+    gap: 20px;
+    /* Increased gap for larger cards */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-top: 20px;
+}
+
+.email-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+}
+
+.email-card:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.template-image {
+    width: 100%;
+    height: auto;
+    max-width: 160px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Larger card size for desktop screens */
+@media (min-width: 768px) {
+    .template-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        /* Larger minimum width */
+    }
+
+    .email-card {
+        padding: 30px;
+        /* Increased padding for larger cards */
+        border-radius: 10px;
+    }
+
+    .template-image {
+        max-width: 200px;
+        /* Larger image size */
+        margin-bottom: 20px;
+    }
+}
+
+.email-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fafafa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.email-form div {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.email-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.email-form input,
+.email-form textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+.email-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.email-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.email-form button:hover {
+    background-color: #45a049;
+}
+
+.status-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+}
