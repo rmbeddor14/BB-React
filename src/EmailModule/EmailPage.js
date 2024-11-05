@@ -1,133 +1,5 @@
-// // the following uses the sendgrid api but passes auth from frontend to firebase fxn
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { getAuth } from 'firebase/auth';
+// //EmailPage.js
 
-// function EmailPage() {
-//   const [statusMessage, setStatusMessage] = useState('');
-
-//   const sendEmailViaProxy = async () => {
-//     try {
-//       // Get the ID token for the currently logged-in user
-//       const auth = getAuth();
-//       const idToken = await auth.currentUser.getIdToken();
-
-//       // Make a POST request to the Firebase proxy function with the ID token
-//       const response = await axios.post(
-//         'https://apiproxy-wlj3ioo7vq-uc.a.run.app',
-//         {
-//           url: 'https://api.sendgrid.com/v3/mail/send',
-//           method: 'POST',
-//           headers: {
-//             Authorization: `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
-//             'Content-Type': 'application/json',
-//           },
-//           data: {
-//             personalizations: [
-//               {
-//                 to: [{ email: 'rmbeddor@gmail.com' }],
-//                 subject: 'Test Email from API Proxy on FIREBASE with Auth',
-//               },
-//             ],
-//             from: { email: 'rmbeddor@gmail.com' },
-//             content: [{ type: 'text/plain', value: 'This is a test email body.' }],
-//           },
-//         },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${idToken}`, // Pass the user's ID token here
-//             'Content-Type': 'application/json',
-//           },
-//         }
-//       );
-
-//       if (response.status === 202) {
-//         setStatusMessage('Email sent successfully!');
-//       } else {
-//         setStatusMessage('Failed to send email.');
-//       }
-//     } catch (error) {
-//       console.error('Error sending email:', error);
-//       setStatusMessage('Error sending email.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Send Email</h1>
-//       <button onClick={sendEmailViaProxy}>Send Test Email</button>
-//       {statusMessage && <p>{statusMessage}</p>}
-//     </div>
-//   );
-// }
-
-// export default EmailPage;
-
-
-// // src/EmailPage.js
-// // postmark
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import { getAuth } from 'firebase/auth';
-
-// function EmailPage() {
-//   const [statusMessage, setStatusMessage] = useState('');
-
-//   const sendEmailViaProxy = async () => {
-//     try {
-//       // Get the ID token for the currently logged-in user
-//       const auth = getAuth();
-//       const idToken = await auth.currentUser.getIdToken();
-
-//       // Make a POST request to the Firebase proxy function with the ID token
-//       const response = await axios.post(
-//         'https://apiproxy-wlj3ioo7vq-uc.a.run.app',
-//         {
-//           url: 'https://api.postmarkapp.com/email', // Postmark API endpoint
-//           method: 'POST',
-//           headers: {
-//             'X-Postmark-Server-Token': `${process.env.REACT_APP_POSTMARK_API_KEY}`, // Use Postmark API key here
-//             'Content-Type': 'application/json',
-//           },
-//           data: {
-//             From: 'rbeddor3@gatech.edu', // Sender's email address
-//             To: 'rbeddor3@gatech.edu', // Recipient's email address
-//             Subject: 'Test Email from Postmark via Firebase Proxy',
-//             TextBody: 'This is a test email body.' // Email content
-//           },
-//         },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${idToken}`, // Pass the user's ID token here
-//             'Content-Type': 'application/json',
-//           },
-//         }
-//       );
-
-//       if (response.status === 200) {
-//         setStatusMessage('Email sent successfully!');
-//       } else {
-//         setStatusMessage('Failed to send email.');
-//       }
-//     } catch (error) {
-//       console.error('Error sending email:', error);
-//       setStatusMessage('Error sending email.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Send Email</h1>
-//       <button onClick={sendEmailViaProxy}>Send Test Email</button>
-//       {statusMessage && <p>{statusMessage}</p>}
-//     </div>
-//   );
-// }
-
-// export default EmailPage;
-
-// // add custom api 
-// // EmailPage.js
 // import React, { useState } from 'react';
 // import EmailForm from './EmailForm';
 // import EmailCard from './EmailCard';
@@ -137,11 +9,12 @@
 //   {
 //     id: 1,
 //     name: "Elephant",
+//     image: "/img/nuts.png",
 //     apiConfig: {
 //       url: "https://api.postmarkapp.com/email/withTemplate",
 //       method: "POST",
 //       headers: {
-//         "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY,
+//         "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY, // Ensure API key is set here
 //         "Content-Type": "application/json",
 //       },
 //       data: {
@@ -156,12 +29,13 @@
 //   },
 //   {
 //     id: 2,
-//     name: "Generic Email",
+//     name: "Basic Template",
+//     image: "/img/basic.png",
 //     apiConfig: {
 //       url: "https://api.postmarkapp.com/email",
 //       method: "POST",
 //       headers: {
-//         "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY,
+//         "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY, // API key for this template as well
 //         "Content-Type": "application/json",
 //       },
 //       fields: [
@@ -178,11 +52,7 @@
 //   const [selectedTemplate, setSelectedTemplate] = useState(null);
 
 //   const handleTemplateSelect = (template) => {
-//     if (selectedTemplate && selectedTemplate.id === template.id) {
-//       setSelectedTemplate(null);
-//     } else {
-//       setSelectedTemplate(template);
-//     }
+//     setSelectedTemplate(selectedTemplate?.id === template.id ? null : template);
 //   };
 
 //   const handleEmailSent = () => {
@@ -194,22 +64,25 @@
 //       <h1>Email Templates</h1>
 //       <div className="template-grid">
 //         {templates.map((template) => (
-//           <EmailCard key={template.id} template={template} onSelect={handleTemplateSelect} />
+//           <div key={template.id} className="template-card-wrapper">
+//             <EmailCard template={template} onSelect={() => handleTemplateSelect(template)} />
+//             {/* Conditionally render the form below the selected template card */}
+//             {selectedTemplate?.id === template.id && (
+//               <div className="pop-out-form">
+//                 <EmailForm
+//                   selectedTemplate={selectedTemplate}
+//                   onEmailSent={handleEmailSent}
+//                 />
+//               </div>
+//             )}
+//           </div>
 //         ))}
 //       </div>
-//       {selectedTemplate && (
-//         <EmailForm
-//           selectedTemplate={selectedTemplate}
-//           onEmailSent={handleEmailSent}
-//         />
-//       )}
 //     </div>
 //   );
 // };
 
 // export default EmailPage;
-
-
 // EmailPage.js
 import React, { useState } from 'react';
 import EmailForm from './EmailForm';
@@ -220,31 +93,34 @@ const templates = [
   {
     id: 1,
     name: "Elephant",
-    image: "/img/nuts.png",  // Path to the image for "Elephant" template
+    image: "/img/nuts.png",
     apiConfig: {
       url: "https://api.postmarkapp.com/email/withTemplate",
       method: "POST",
       headers: {
+        "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY,
         "Content-Type": "application/json",
+        "Accept": "application/json"
       },
       data: {
-        TemplateAlias: "code-your-own-1",
+        TemplateAlias: "code-your-own-1"
       },
       fields: [
         { name: "From", label: "Sender", type: "email" },
         { name: "To", label: "Recipient", type: "email" },
-        { name: "TemplateModel.customMessage", label: "Custom Message", type: "textarea" }
+        { name: "TemplateModel.subject_baby", label: "Subject", type: "text" }
       ]
     }
   },
   {
     id: 2,
     name: "Basic Template",
-    image: "/img/basic.png",  // Example path for another template image
+    image: "/img/basic.png",
     apiConfig: {
       url: "https://api.postmarkapp.com/email",
       method: "POST",
       headers: {
+        "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY,
         "Content-Type": "application/json",
       },
       fields: [
@@ -259,17 +135,16 @@ const templates = [
 
 const EmailPage = () => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleTemplateSelect = (template) => {
-    if (selectedTemplate && selectedTemplate.id === template.id) {
-      setSelectedTemplate(null);
-    } else {
-      setSelectedTemplate(template);
-    }
+    setSelectedTemplate(selectedTemplate?.id === template.id ? null : template);
+    setStatusMessage(""); // Reset status message when changing template
   };
 
-  const handleEmailSent = () => {
+  const handleEmailSent = (message) => {
     setSelectedTemplate(null);
+    setStatusMessage(message); // Set the success message
   };
 
   return (
@@ -277,15 +152,20 @@ const EmailPage = () => {
       <h1>Email Templates</h1>
       <div className="template-grid">
         {templates.map((template) => (
-          <EmailCard key={template.id} template={template} onSelect={handleTemplateSelect} />
+          <div key={template.id} className="template-card-wrapper">
+            <EmailCard template={template} onSelect={() => handleTemplateSelect(template)} />
+            {selectedTemplate?.id === template.id && (
+              <div className="pop-out-form">
+                <EmailForm
+                  selectedTemplate={selectedTemplate}
+                  onEmailSent={() => handleEmailSent("Message sent successfully!")}
+                />
+              </div>
+            )}
+          </div>
         ))}
       </div>
-      {selectedTemplate && (
-        <EmailForm
-          selectedTemplate={selectedTemplate}
-          onEmailSent={handleEmailSent}
-        />
-      )}
+      {statusMessage && <p className="status-message">{statusMessage}</p>}
     </div>
   );
 };

@@ -76,8 +76,7 @@
 //   );
 // };
 
-// export default EmailForm;
-// EmailForm.js
+//EmailForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
@@ -114,13 +113,13 @@ const EmailForm = ({ selectedTemplate, onEmailSent }) => {
         ref[keys[0]] = formData[field.name];
       });
 
-      // Call Firebase proxy function
+      // Call Firebase proxy function, preserving headers with the API key
       const response = await axios.post(
         'https://apiproxy-wlj3ioo7vq-uc.a.run.app',
         {
           url,
           method,
-          headers,
+          headers, // Includes the API key here
           data: payload,
         },
         {
