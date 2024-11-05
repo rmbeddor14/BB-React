@@ -10,7 +10,7 @@ import SeekerProfileForm from './SeekerProfileForm';
 import Portal from './Portal';
 import SeekerProfileForm2 from './DynamicFormExplore/SeekerProfileForm2';
 
-import EmailPage from './EmailPage';
+import EmailPage from './EmailModule/EmailPage.js';
 
 
 // Lazy load components

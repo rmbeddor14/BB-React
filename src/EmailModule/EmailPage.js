@@ -1,29 +1,32 @@
-// the following works but is limited in auth 
-
-// // src/EmailPage.js
+// // the following uses the sendgrid api but passes auth from frontend to firebase fxn
 // import React, { useState } from 'react';
 // import axios from 'axios';
+// import { getAuth } from 'firebase/auth';
 
 // function EmailPage() {
 //   const [statusMessage, setStatusMessage] = useState('');
 
 //   const sendEmailViaProxy = async () => {
 //     try {
-//       // Make a POST request to the Firebase proxy function with necessary parameters
+//       // Get the ID token for the currently logged-in user
+//       const auth = getAuth();
+//       const idToken = await auth.currentUser.getIdToken();
+
+//       // Make a POST request to the Firebase proxy function with the ID token
 //       const response = await axios.post(
 //         'https://apiproxy-wlj3ioo7vq-uc.a.run.app',
 //         {
-//           url: 'https://api.sendgrid.com/v3/mail/send', // Target API endpoint
+//           url: 'https://api.sendgrid.com/v3/mail/send',
 //           method: 'POST',
 //           headers: {
-//             Authorization: `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`, // Access the updated environment variable
+//             Authorization: `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
 //             'Content-Type': 'application/json',
 //           },
 //           data: {
 //             personalizations: [
 //               {
 //                 to: [{ email: 'rmbeddor@gmail.com' }],
-//                 subject: 'Test Email from API Proxy on FIREBASE with the BROWSER local',
+//                 subject: 'Test Email from API Proxy on FIREBASE with Auth',
 //               },
 //             ],
 //             from: { email: 'rmbeddor@gmail.com' },
@@ -32,12 +35,12 @@
 //         },
 //         {
 //           headers: {
+//             Authorization: `Bearer ${idToken}`, // Pass the user's ID token here
 //             'Content-Type': 'application/json',
 //           },
 //         }
 //       );
 
-//       // Update status message based on response
 //       if (response.status === 202) {
 //         setStatusMessage('Email sent successfully!');
 //       } else {
@@ -61,8 +64,8 @@
 // export default EmailPage;
 
 
-// the following passes auth info from frontend to backend
-
+// src/EmailPage.js
+// postmark
 import React, { useState } from 'react';
 import axios from 'axios';
 import { getAuth } from 'firebase/auth';
@@ -80,21 +83,17 @@ function EmailPage() {
       const response = await axios.post(
         'https://apiproxy-wlj3ioo7vq-uc.a.run.app',
         {
-          url: 'https://api.sendgrid.com/v3/mail/send',
+          url: 'https://api.postmarkapp.com/email', // Postmark API endpoint
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
+            'X-Postmark-Server-Token': `${process.env.REACT_APP_POSTMARK_API_KEY}`, // Use Postmark API key here
             'Content-Type': 'application/json',
           },
           data: {
-            personalizations: [
-              {
-                to: [{ email: 'rmbeddor@gmail.com' }],
-                subject: 'Test Email from API Proxy on FIREBASE with Auth',
-              },
-            ],
-            from: { email: 'rmbeddor@gmail.com' },
-            content: [{ type: 'text/plain', value: 'This is a test email body.' }],
+            From: 'rbeddor3@gatech.edu', // Sender's email address
+            To: 'rbeddor3@gatech.edu', // Recipient's email address
+            Subject: 'Test Email from Postmark via Firebase Proxy',
+            TextBody: 'This is a test email body.' // Email content
           },
         },
         {
@@ -105,7 +104,7 @@ function EmailPage() {
         }
       );
 
-      if (response.status === 202) {
+      if (response.status === 200) {
         setStatusMessage('Email sent successfully!');
       } else {
         setStatusMessage('Failed to send email.');
