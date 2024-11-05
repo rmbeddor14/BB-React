@@ -10,6 +10,9 @@ import SeekerProfileForm from './SeekerProfileForm';
 import Portal from './Portal';
 import SeekerProfileForm2 from './DynamicFormExplore/SeekerProfileForm2';
 
+import EmailPage from './EmailPage';
+
+
 // Lazy load components
 const ProfileList = React.lazy(() => import('./ProfileList'));
 const Profile = React.lazy(() => import('./Profile'));
@@ -30,6 +33,11 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
+
+          {/* Private route for EmailPage */}
+          <Route path="/emailpage" element={<PrivateRoute element={<EmailPage />} />} />
+          {/* <Route path="/emailpage" element={<EmailPage />} /> */}
+
 
           {/*open to public points to mainpage2 */}
           <Route path="/" element={<MainPage />} />
