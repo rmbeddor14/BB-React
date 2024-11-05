@@ -1,5 +1,11 @@
 # Status
 
+## 11-5 
+- set up proxy layer for apis thru firebase fxn , which is cleaner method than firebase fxn for each thing but still allows api key security
+- it is somewhat complicated to set up firebase fxn because need it to work for both local env and hosted env
+- try require auth token from firebase because overrode some CORS policy to use both local dev and hosted dev together
+- this is for email thing but also for all apis in future potentially 
+
 ## 11-4
 - set up private auth to wrap and only allow admin via a RBAC firestore call 
 - Victoria & Rachel are admins
