@@ -1,5 +1,12 @@
 # Status
 
+## 11-4
+- set up private auth to wrap and only allow admin via a RBAC firestore call 
+- Victoria & Rachel are admins
+- some bugs in this too, check privateroute.js , had to do a timeout bc firestore call is asynchronous , this is a bad method. need to change later
+- after that i explored the email software but did not git push because there's an issue here with how i did the firebase functions
+- i hate firebase fxns, did all this frontend auth but the backend wasn't even authed at all. also it's super hard to rapid prototype them. i'm just gonna api call frontend and keep the api key in an env variable unless there's some major issue with that. will work on that tomorrow will need to roll back stuff. 
+
 ## 10-30
 - admin dynamic form building functionality first steps - you can check it out at `/admin-field-manager` and `/dynamic-form`
 
