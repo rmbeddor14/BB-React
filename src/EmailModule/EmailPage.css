@@ -1,8 +1,6 @@
-/* EmailPage.css */
-
+/* General Page Styling */
 .email-page {
     max-width: 1000px;
-    /* Slightly wider to accommodate larger cards */
     margin: auto;
     text-align: center;
     padding: 20px;
@@ -11,19 +9,32 @@
 .template-grid {
     display: grid;
     gap: 20px;
-    /* Increased gap for larger cards */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin-top: 20px;
+    justify-content: center;
+    /* Center grid items within the container */
 }
 
+/* Card Styling */
 .email-card {
-    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    /* Increased card width */
+    padding: 25px;
+    /* Increased padding */
     border: 1px solid #ddd;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.3s, box-shadow 0.3s;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    height: auto;
+    /* Dynamic height to fit content */
+    min-height: 350px;
+    /* Minimum height for consistency */
 }
 
 .email-card:hover {
@@ -33,33 +44,57 @@
 
 .template-image {
     width: 100%;
-    height: auto;
-    max-width: 160px;
-    margin-bottom: 15px;
+    max-width: 220px;
+    /* Increased image width */
+    margin-bottom: 20px;
+    /* Adjusted margin */
     border-radius: 5px;
     object-fit: cover;
 }
 
-/* Larger card size for desktop screens */
+/* Responsive Adjustments */
 @media (min-width: 768px) {
     .template-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        /* Larger minimum width */
     }
 
     .email-card {
         padding: 30px;
-        /* Increased padding for larger cards */
         border-radius: 10px;
     }
 
     .template-image {
-        max-width: 200px;
-        /* Larger image size */
+        max-width: 240px;
+        /* Larger image size on desktop */
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .template-grid {
+        grid-template-columns: 1fr;
+        /* Set to a single column on mobile */
+        justify-items: center;
+        /* Center items within the grid */
+    }
+
+    .email-card {
+        width: 95%;
+        /* Make the card larger on mobile */
+        max-width: 350px;
+        /* Limit the max width on mobile */
+        padding: 20px;
+        /* Adjusted padding for mobile */
+    }
+
+    .template-image {
+        max-width: 260px;
+        /* Larger image size for mobile */
         margin-bottom: 20px;
     }
 }
 
+/* Form Styling */
 .email-form {
     margin-top: 20px;
     padding: 20px;
@@ -114,6 +149,7 @@
     background-color: #45a049;
 }
 
+/* Status Message */
 .status-message {
     margin-top: 10px;
     font-weight: bold;
