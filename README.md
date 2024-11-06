@@ -5,6 +5,13 @@
 - it is somewhat complicated to set up firebase fxn because need it to work for both local env and hosted env
 - try require auth token from firebase because overrode some CORS policy to use both local dev and hosted dev together
 - this is for email thing but also for all apis in future potentially 
+- eventually picked the following: 
+    - **postmark** for email sending
+    - **firebase proxy function** for hiding the api key and managing requests
+
+- in future workflow for new designs could be like figma-> html export -> postmark -> site 
+
+![demo of email](img/son_of_a_browser.gif)
 
 ## 11-4
 - set up private auth to wrap and only allow admin via a RBAC firestore call 
