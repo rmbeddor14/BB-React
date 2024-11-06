@@ -23,6 +23,8 @@ jobs:
           echo "REACT_APP_APP_ID=${{ secrets.REACT_APP_APP_ID }}" >> $GITHUB_ENV
           echo "REACT_APP_MEASUREMENT_ID=${{ secrets.REACT_APP_MEASUREMENT_ID }}" >> $GITHUB_ENV
           echo "REACT_APP_SENDGRID_API_KEY=${{ secrets.REACT_APP_SENDGRID_API_KEY }}" >> $GITHUB_ENV
+          echo "REACT_APP_POSTMARK_API_KEY=${{ secrets.REACT_APP_POSTMARK_API_KEY }}" >> $GITHUB_ENV
+
 
       # Step to install dependencies
       - name: Install dependencies
