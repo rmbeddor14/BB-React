@@ -11,6 +11,7 @@ import Portal from './Portal';
 import SeekerProfileForm2 from './DynamicFormExplore/SeekerProfileForm2';
 
 import EmailPage from './EmailModule/EmailPage.js';
+//import Unlayer  from './EmailModule/Unlayer.js';
 
 
 // Lazy load components
@@ -19,6 +20,7 @@ const Profile = React.lazy(() => import('./Profile'));
 const AdminViewProfileList = React.lazy(() => import('./AdminPortal/AdminViewProfileList.js'));
 const AdminViewProfile = React.lazy(() => import('./AdminPortal/AdminViewProfile.js'));
 const ProfileTinderList = React.lazy(() => import('./ProfileTinderList'));
+const Unlayer = React.lazy(() => import('./EmailModule/Unlayer.js'));
 
 {/* testing admin field manager */}
 
@@ -33,14 +35,22 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
+          {/*open to public  */}
+          <Route path="/" element={<MainPage />} />
 
           {/* Private route for EmailPage */}
           <Route path="/emailpage" element={<PrivateRoute element={<EmailPage />} />} />
           {/* <Route path="/emailpage" element={<EmailPage />} /> */}
-
-
-          {/*open to public points to mainpage2 */}
-          <Route path="/" element={<MainPage />} />
+          
+          {/* lazy load unlayer */}
+          <Route
+            path="/unlayer"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <PrivateRoute element={<Unlayer />} />
+              </Suspense>
+            }
+          />
 
           {/* testing admin field manager and dynamic form */}
           <Route

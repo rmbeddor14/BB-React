@@ -1,5 +1,10 @@
 # Status
 
+## 11-7 
+- try out unlayer
+- there's an open source email lib from unlayer that works really well it seems? idk. I think we could use it to make this happen 
+
+![unlayer demo](img/unlayer_demo_react_email_lib.gif)
 ## 11-5 
 - set up proxy layer for apis thru firebase fxn , which is cleaner method than firebase fxn for each thing but still allows api key security
 - it is somewhat complicated to set up firebase fxn because need it to work for both local env and hosted env
