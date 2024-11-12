@@ -88,7 +88,6 @@ export default function OnboardingQuestionnaire({ onComplete }) {
         return (
         <div className="questionnaire-step">
           <h2 className="step-title">Join Us</h2>
-          <p>I need to update this to make it's own component called sign up or something later. Also both buttons take you to the google screen. Also needs logo. </p>
           <div className="option-buttons">
             <button
               onClick={handleLoginRedirect}
