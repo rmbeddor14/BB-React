@@ -11,20 +11,23 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    /* Transition for swipe animation */
+    will-change: transform;
+}
+
+/* Swipe Animation Styling */
+.swipeable-card.swipe-left {
+    transform: translateX(-100%) rotate(-15deg);
+    opacity: 0;
+}
+
+.swipeable-card.swipe-right {
+    transform: translateX(100%) rotate(15deg);
+    opacity: 0;
 }
 
 /* Image Styling */
-/* .profile-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-} */
-
- /* adjusted to match new form submission */
-
 .profile-image {
     width: 250px;
     height: 250px;
@@ -50,13 +53,14 @@ p {
     margin: 8px 0;
 }
 
+/* Swipe Buttons Styling */
 .swipe-buttons {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
     padding-top: 20px;
     width: 120%;
-            /* Adjust width to control spacing */
+    /* Adjust width to control spacing */
 }
 
 .swipe-button {
@@ -79,13 +83,13 @@ p {
     border-radius: 50%;
     /* Ensures a circular shape */
     width: 60px;
-        /* Set explicit width */
+    /* Set explicit width */
     height: 60px;
-        /* Set explicit height to match width */
+    /* Set explicit height to match width */
     display: flex;
     align-items: center;
     justify-content: center;
-        /* Center the heart icon */
+    /* Center the icon */
 }
 
 .like {
@@ -101,7 +105,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Center the heart icon */
+    /* Center the icon */
     font-size: 2rem;
     /* Adjust font size for better fit */
 }
@@ -113,4 +117,5 @@ p {
 
 .swipe-buttons .dislike::before {
     content: 'X';
+    /* Cross icon */
 }
