@@ -12,6 +12,7 @@ import SeekerProfileForm2 from './DynamicFormExplore/SeekerProfileForm2';
 
 import EmailPage from './EmailModule/EmailPage.js';
 //import Unlayer  from './EmailModule/Unlayer.js';
+import Prac from './Prac';
 
 
 // Lazy load components
@@ -37,6 +38,9 @@ function App() {
         <Routes>
           {/*open to public  */}
           <Route path="/" element={<MainPage />} />
+
+          <Route path="/prac" element={<Prac />} />
+
 
           {/* Private route for EmailPage */}
           <Route path="/emailpage" element={<PrivateRoute element={<EmailPage />} />} />

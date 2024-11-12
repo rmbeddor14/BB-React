@@ -60,6 +60,7 @@ function SwipeableCard({ profile, onSwipe, isMobile }) {
           <img src={profile.imageURL} alt={profile.name} className="profile-image" />
           <h3>{profile.name}</h3>
           <p>{profile.location}</p>
+          <p>{profile.type === "seeker" ? "Seeking Surrogate" : "Surrogate"}</p>
         </>
       ) : (
         // Back of the card (Full Profile Info using Profile component)
