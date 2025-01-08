@@ -5,7 +5,7 @@ This repository contains the **code, notes, and a demo** from our November proje
 ## Demo 
 - if the firebase project is still live, you can access it directly here - https://bb-react-f3374.firebaseapp.com/swipe-profiles 
 - otherwise, check out this gif: 
-![swipe demo](img/swipe_demo.gif)
+![swipe demo](img/swipe_demo2.gif)
 
 ## Features
 - 🔥 Built on firebase with a scalable backend database and data store!
