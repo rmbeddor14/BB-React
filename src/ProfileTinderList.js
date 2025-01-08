@@ -10,7 +10,7 @@
  // so it should use auth context unless it's an admin and then it uses a profile context but it all needs to be the same
  // lets see if we can get this to be legit for auth context 
 import React, { useEffect, useState, useCallback, memo } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where} from 'firebase/firestore';
 import { db } from './firebase-config';
 import SwipeableList from './SwipeableList';
 // import { handleSwipe } from './services/swipeService';
