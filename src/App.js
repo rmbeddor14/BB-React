@@ -34,6 +34,12 @@ const ProfileTinderList2 = React.lazy(() => import('./DynamicFormExplore/Profile
 function App() {
   return (
     <Router>
+
+      <Routes>
+
+        <Route path="/swipe-profiles" element={<ProfileTinderList />} />
+      </Routes>
+      
       <AuthProvider>
         <Routes>
           {/*open to public  */}
