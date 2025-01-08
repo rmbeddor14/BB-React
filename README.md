@@ -1,5 +1,43 @@
 # Status
 
+## 01-08 Update to Open Source 
+- cleaning this up so we can use the live link in applications
+- this was a demo of swiping that we used to learn firebase and get an idea for how we might want the tech to look
+- our company will encompass much more than swiping now 
+### things I changed for the demo 
+- adjusted firestore security rules so that the fake "profiles" database can be read by the app & users can read their own data (for RBAC)
+- remove log-in requirement for profiles swipe demo (though still included in the demo for github)
+- firestore rules 
+
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Public read access to the 'profiles' collection
+    match /profiles/{document=**} {
+      allow read: if true; // Allows anyone to read the profiles
+    }
+    
+    // Allow authenticated users to read their own document in the 'users' collection
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Allow authenticated users to write to the 'swipes' collection
+    match /swipes/{document=**} {
+      allow write: if request.auth != null; // Only authenticated users can write
+    }
+
+    // Deny all other access by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+```
+
 ## 11-7 
 - try out unlayer
 - there's an open source email lib from unlayer that works really well it seems? idk. I think we could use it to make this happen 

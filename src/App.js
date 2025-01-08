@@ -149,15 +149,17 @@ function App() {
             }
           />
 
-          {/* Add a route for the swipeable profile list */}
-          {/* lazy load*/}
-          
-          <Route path="/swipe-profiles" element={
+          {/* Add a route for the swipeable profile list*/}
+          {/* lazy load */}
+          {/* <Route path="/swipe-profiles" element={
             <Suspense fallback={<div>Loading...</div>}>
-            <PrivateRoute element={<ProfileTinderList />} />
+              <ProfileTinderList />
             </Suspense>
-          }
-          />
+          } /> */}
+         
+         {/* Add a route for the swipeable profile list */}
+         <Route path="/swipe-profiles" element={<ProfileTinderList />} />
+
 
         </Routes>
       </AuthProvider>
