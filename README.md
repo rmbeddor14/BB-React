@@ -8,10 +8,10 @@ This repository contains the **code, notes, and a demo** from our November proje
 
 
 ## Features
-🔥 Built on firebase with a scalable backend database and data store!
-📝 Read about our journey as we learned front-end development and firebase in the Status section 
-🤪 Laugh out loud as you see our ~hilarious~ sample surrogates
-🔐 Check out the authentication sections and give me feedback if you have ideas on how that can be improved!! 
+- 🔥 Built on firebase with a scalable backend database and data store!
+- 📝 Read about our journey as we learned front-end development and firebase in the Status section 
+- 🤪 Laugh out loud as you see our ~hilarious~ sample surrogates
+- 🔐 Check out the authentication sections and give me feedback if you have ideas on how that can be improved!! 
 
 ## Purpose
 To provide resources and support for other engineers who are also learning firebase / frontend! 
