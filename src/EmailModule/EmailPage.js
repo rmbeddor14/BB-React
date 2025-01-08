@@ -14,7 +14,6 @@
 //       url: "https://api.postmarkapp.com/email/withTemplate",
 //       method: "POST",
 //       headers: {
-//         "X-Postmark-Server-Token": process.env.REACT_APP_POSTMARK_API_KEY, // Ensure API key is set here
 //         "Content-Type": "application/json",
 //       },
 //       data: {
