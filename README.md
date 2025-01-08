@@ -1,3 +1,29 @@
+# A Dating App for Surrogacy 💕🤱
+
+This repository contains the **code, notes, and a demo** from our November project, focused on creating a dating app for surrogacy connections. While we've since pivoted to a new direction, but we wanted to open-source this work to benefit the community. 
+
+## Demo 
+- if the firebase project is still live, you can access it directly here - https://bb-react-f3374.firebaseapp.com/swipe-profiles 
+- otherwise, check out this gif: 
+
+
+## Features
+🔥 Built on firebase with a scalable backend database and data store!
+📝 Read about our journey as we learned front-end development and firebase in the Status section 
+🤪 Laugh out loud as you see our ~hilarious~ sample surrogates
+🔐 Check out the authentication sections and give me feedback if you have ideas on how that can be improved!! 
+
+## Purpose
+To provide resources and support for other engineers who are also learning firebase / frontend! 
+
+## Contributing
+Feel free to fork, improve, or share! 💌
+
+## License
+[MIT](LICENSE.txt)
+
+
+
 # Status
 
 ## 01-08 Update to Open Source 
