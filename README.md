@@ -2,10 +2,13 @@
 
 This repository contains the **code, notes, and a demo** from our November project, focused on creating a dating app for surrogacy connections. While we've since pivoted to a new direction, but we wanted to open-source this work to benefit the community. 
 
-## Demo 
-- if the firebase project is still live, you can access it directly here - https://bb-react-f3374.firebaseapp.com/swipe-profiles 
-- otherwise, check out this gif: 
-![swipe demo](img/swipe_demo2.gif)
+## 🎬 Demo  
+🌐 **Live Swipe Action** (if it's still up and running):  https://bb-react-f3374.firebaseapp.com/swipe-profiles
+
+📸 **No live app? No problem!**  
+✨ Feast your eyes on this GIF magic:  
+
+![Swipe Demo](img/swipe_demo2.gif)  
 
 ## Features
 - 🔥 Built on firebase with a scalable backend database and data store!
