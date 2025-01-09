@@ -16,8 +16,9 @@ This repository contains the **code, notes, and a demo** from our November proje
 - 🤪 Laugh out loud as you see our *hilarious* sample surrogates
 - 🔐 Check out the authentication sections and give me feedback if you have ideas on how that can be improved!!
 
-## Purpose
-To provide resources and support for other engineers who are also learning firebase / frontend! 
+## 🤖 Did AI write this code? 
+
+Hell yeah it did!!! And I could talk for hours about what that taught me about the completely new workflow (and new challenges) of an **AI-first dev strategy**!! So... please reach out to me if you want to talk about this!! 
 
 ## Contributing
 Feel free to fork, improve, or share! 💌
@@ -26,6 +27,7 @@ Feel free to fork, improve, or share! 💌
 - let me know what you think of this project!! 
 - any advice for making the images load faster?? 
 - any advice on authenticating centrally with gcp? 
+- how do you feel about the difference between using ai to "create" completely new code (what I did here) vs "edit" existing code? 
 
 ## License
 [MIT](LICENSE.txt)
