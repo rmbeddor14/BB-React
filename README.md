@@ -1,6 +1,6 @@
 # A Dating App for Surrogacy 💕🤱
 
-This repository contains the **code, notes, and a demo** from our November project, focused on creating a dating app for surrogacy connections. While we've since pivoted to a new direction, but we wanted to open-source this work to benefit the community. 
+This repository contains the **code, notes, and a demo** from our November project, focused on creating a dating app for surrogacy connections. We've since pivoted to a new direction, but we wanted to open-source this work to benefit the community. 
 
 ## 🎬 Demo  
 🌐 **Live Swipe Action** (if it's still up and running):  https://bb-react-f3374.firebaseapp.com/swipe-profiles
